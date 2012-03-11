@@ -1,0 +1,91 @@
+<?php
+/* 
+ Plugin Name: wk_display_feed
+ Plugin URI: http://knorcedger.com
+ Description: Fetching, caching and displaying feeds.
+ Version: 0.5.7
+ Author: Achilleas Tsoumitas
+ Author URI: http://knorcedger.com
+ */
+?>
+<?php
+/**
+ * Fetches, caches and displays a feed
+ * 
+ * @example wk_display_feed('http://feedproxy.google.com/fashionway', 'fashionway', '<ul>', '</ul>', '<li><a href="the_link" title="the_description">the_title</a></li>', 10, 60);
+ * 
+ * @return An ordered list with the latest titles
+ * @param string $url
+ * @param string $name
+ * @param string $prefix
+ * @param string $suffix
+ * @param string $between Using the vars: the_title, the_link, the_description
+ * @param int $items_num[optional]
+ * @param int $update_interval[optional] In minutes
+ */
+function wk_display_feed($url, $name, $prefix, $suffix, $between, $items_num = 10, $update_interval = 60) {
+	//to take the vars from wk_display_feed_from_cache
+    global $titles;
+	//empty titles to not remember any values
+	$titles = '';
+    global $links;
+    global $descriptions;
+	global $updated_time;
+	//fetch rss from cache
+	wk_display_feed_from_cache($name, $items_num);
+	//calculate current time
+	$mytime = date('G')*60+date('i');
+	//if cache doesnt exist or update_time is empty meaning not properly saved, or update_interval passed
+	//if($titles[0] == '' || $updated_time == '' || $mytime > $updated_time + $update_interval || ($mytime < 200 && $updated_time + $update_time > 1000)){
+	//this is the new testing version of the if
+	if($titles[0] == '' || $updated_time == '' || $mytime > $updated_time + $update_interval || $mytime < $updated_time){
+		//add feed to cache
+		include_once 'update.php';
+		wk_display_feed_update($url, $name, $items_num);
+		//reload feed from cache
+		$items = wk_display_feed_from_cache($name, $items_num);
+	}
+
+    if ( empty($titles)) echo '---';
+    else
+	
+	//create final string
+	$final = $prefix;
+	for ($i = 0; $i < sizeof($titles); $i++) {
+		//replace dummy vars with the real ones
+		$temp = str_replace('the_title', $titles[$i], $between);
+		$temp = str_replace('the_link', $links[$i], $temp);
+		$temp = str_replace('the_description', $descriptions[$i], $temp);
+		$final .= $temp;
+	}
+	$final .= $suffix;
+	echo $final;
+}
+/**
+ * 
+ * @return 
+ * @param string $name
+ * @param int $items_num
+ */
+function wk_display_feed_from_cache($name, $items_num) {
+	global $titles;
+    global $links;
+    global $descriptions;
+	global $updated_time;
+	$rss = simplexml_load_file(get_bloginfo('url').'/wp-content/plugins/wk_display_feed/cache/'.$name.'.xml');
+	//count item by rss feed
+	$allitems = count($rss->channel->item);
+	//check if requested items are more than the feed has
+	if($allitems < $items_num){
+		$items_num = $allitems;
+	}
+	//parse the RSS feed
+	for ($i = 0; $i < $items_num; $i++) {
+		$titles[$i] = $rss->channel->item[$i]->title;
+		$links[$i] = $rss->channel->item[$i]->link;
+		$descriptions[$i] = $rss->channel->item[$i]->description;
+	}
+	//save time of last update
+	$updated_time = $rss->channel->updated_time;
+}
+?>

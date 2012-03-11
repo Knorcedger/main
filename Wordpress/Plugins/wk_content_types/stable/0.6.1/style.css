@@ -1,0 +1,83 @@
+/* @override http://telegraph.o-some.com/wp-content/plugins/wk_content_types/style.css */
+
+#misc-publishing-actions div.featured.misc-pub-section {
+	position: relative;
+	}
+
+#misc-publishing-actions div.featured.misc-pub-section ul {
+	position: absolute; top: 3px; left: 5.1em;
+	}
+
+div#photo_box div.photo,
+div#photo_box div.featured_photo {
+	margin: 14px 0;
+	}
+
+
+div#photo_box .button {
+	margin-left: 10px;
+	}
+div#photo_box .howto {
+	margin-top: 10px;
+	}
+div#photo_box .howto.separator {
+	margin-top: 10px;
+	padding-bottom: 10px;
+	margin-left: -6px; margin-right: -6px;
+	padding-left: 6px; padding-right: 6px;
+	border-bottom: 1px solid #eee;
+	}
+div#photo_box div.featured_photo .howto.separator {
+	border: none;
+	padding-bottom: 0px;
+	}
+
+.howto.separator {
+	padding-bottom: 5px;
+	margin-left: -12px; margin-right: -12px;
+	padding-left: 12px; padding-right: 12px;
+	border-bottom: 1px solid #eee;
+	}
+
+div#photo_box a.add.button {
+	display: block;
+	width: 3em;
+	text-align: center;
+	margin: 5px 0;
+	}
+
+div.ac_results li.ac_over {
+	color: #ffffff;
+	background: #257ea8;
+	}
+a.add.add-topic.button {
+	display: inline-block;
+	padding-left: 1.1em; padding-right: 1.1em;
+	}
+	
+a.greybox,
+a.add-website,
+a.add-feed {
+	display: inline-block;
+	}
+div#websites_box label,
+div#feeds_box label {
+	display: inline-block;
+	width: 45px;
+	}
+div#websites_box .separator,
+div#feeds_box .separator {
+	padding-top: 4px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+

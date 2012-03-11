@@ -1,0 +1,33 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	}
+
+span.new_photo-thumb-info {
+	position: relative;
+	}
+span.photo-name {
+	display: block;
+	position: absolute; top: -40px; left: 90px;
+	width: 250px; height: 30px;
+	}
+span.photo-delete {
+	display: block;
+	position: absolute; top: -10px; left: 90px;
+	width: 250px; height: 30px;
+	}
+
+span.new_photo-thumb-info img {
+	padding: 1px;
+	border: 1px solid #cccccc;
+	}
+
+span.new_photo-thumb-info a {
+	text-decoration: none;
+	color: #2681ac;
+	}
+span.new_photo-thumb-info a:hover {
+	text-decoration: underline;
+	}
+span.photo-delete a {
+	color: red;
+	}

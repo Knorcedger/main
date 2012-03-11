@@ -1,0 +1,72 @@
+<?php
+/* 
+ Plugin Name: wk_twitter
+ Plugin URI: http://knorcedger.com
+ Description: Fetching and displaying twitter messages.
+ Version: 0.3.9
+ Author: Achilleas Tsoumitas
+ Author URI: http://knorcedger.com
+ */
+?>
+<?php
+/**
+ * Fetches and displays twitter messages
+ * 
+ * @example wk_twitter('en', 'TechblogGR', 3, 60, 1, '<ul><li>', '</li></ul>', '</li><li>');
+ * 
+ * @return The twits
+ * @param string $language
+ * @param string $username
+ * @param int $messages[optional]
+ * @param int $update_time[optional]
+ * @param int $display_time[optional]
+ * @param string $prefix[optional]
+ * @param string $suffix[optional]
+ * @param string $between[optional]
+ */
+function wk_twitter($language, $username, $messages = 1, $update_time = 15, $display_time = 0, $prefix = '', $suffix = '', $between = '') {
+	//languages
+	if ($language == 'en') {
+		$ago = 'ago';
+	} elseif ($language == 'gr') {
+		$ago = 'πριν';
+	}
+	//include necessary files
+	if ($display_time) {
+		include_once 'time_ago.php';
+	}
+	//fetch data from database
+	//data in db are saved like that: updated_time . '~' . $alltwits . '~' . $alltimes
+	$data = get_option('wk_twitter');
+	//seperate to time, twits, times
+	$data = explode('~', $data);
+	$updated_time = $data[0];
+	//seperate twits
+	$mytwits = explode('|', $data[1]);
+	//seperate times
+	$mytimes = explode('|', $data[2]);
+	//calculate current time
+	$mytime = date('G')*60+date('i');
+	//check if we should update twits
+	if ($mytime > $updated_time + $update_time || ($mytime +$update_time < $updated_time)) {
+		include_once 'update.php';
+		wk_twitter_update($username, $messages);
+	}
+
+	//create final string to output
+	$final = $prefix;
+	for ($i = 0; $i < $messages; $i++) {
+		$final .= $mytwits[$i];
+		//add time
+		if ($display_time) {
+			$final .= ' @ '.time_ago($mytimes[$i], $language)." $ago";
+		}
+		//if not last twit add the between value
+		if ($i+1 < $messages) {
+			$final .= $between;
+		}
+	}
+	$final .= $suffix;
+	echo $final;
+}
+?>
