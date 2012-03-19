@@ -20,16 +20,17 @@ var customDates = {
 	},
 
 	oneMonthBackDate: function(){
+
 		var oneMonthBack = new Date();
-		var daysInPreviousMonth = daysInMonth(oneMonthBack.getMonth(), oneMonthBack.getFullYear());
-		oneMonthBack.setDate(oneMonthBack.getDate() - daysInPreviousMonth);
-		var oneMonthBackDate = this.addZero(oneMonthBack.getDate()) + "/" + this.addZero(oneMonthBack.getMonth() + 1) + "/" + oneMonthBack.getFullYear();
+		var daysInPreviousMonth = this.daysInMonth(today.getMonth(), today.getFullYear());
+		oneMonthBack.setDate( - (daysInPreviousMonth - today.getDate()));
+		var oneMonthBackDate = thisaddZero(oneMonthBack.getDate()) + "/" + thisaddZero(oneMonthBack.getMonth() + 1) + "/" + oneMonthBack.getFullYear();
 
 		return oneMonthBackDate;
 	},
 
 	daysInMonth: function(month, year) {
-		return new Date(year, month, 0).getDate();
+		return 32 - new Date(today.getFullYear(), today.getMonth()-1, 32).getDate();
 	},
 
 	addZero: function(value){
