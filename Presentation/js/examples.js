@@ -54,13 +54,16 @@ jQuery(document).ready(function() {
 			"click .fade-in": "fadeIn",
 			"click .slide-up": "slideUp",
 			"click .slide-down": "slideDown",
-			"click .animate": "animate"
+			"click .animate": "animate",
+			"click .ajaxrequest": "ajaxrequest"
 		},
 		dynamicTypingExample: function() {
+			debugger;
 			var x = 10;
 			x = "I prefer being a string ;)";
 		},
 		scopeExample1: function() {
+			debugger;
 			var x = 3;
 
 			function run() {
@@ -70,6 +73,7 @@ jQuery(document).ready(function() {
 			console.log(x);
 		},
 		scopeExample2: function() {
+			debugger;
 			var x = 3;
 
 			function run() {
@@ -85,12 +89,14 @@ jQuery(document).ready(function() {
 			console.log(x);
 		},
 		arraysExample: function() {
+			debugger;
 			var animals = ["dog", "cat", "hen"];
 			animals[100] = "fox";
 			console.log(animals.length);
 			console.log(animals[90]);
 		},
 		equalityExample: function() {
+			debugger;
 			var x = 1;
 			var y = "1";
 			console.log(x == y);
@@ -99,12 +105,14 @@ jQuery(document).ready(function() {
 			console.log(typeof y);
 		},
 		strictEqualityExample: function() {
+			debugger;
 			var animals = ["dog", "cat", "hen"];
 			animals[100] = "fox";
 			console.log(animals.length);
 			console.log(animals[90]);
 		},
 		equalityComparisonExamples: function() {
+			debugger;
 			console.log("" == "0");
 			console.log(0 == "");
 			console.log(0 == "0");
@@ -134,14 +142,17 @@ jQuery(document).ready(function() {
 			console.log([1, 2, 3] === [1, 2, 3]);
 		},
 		nanExample: function() {
+			debugger;
 			console.log(typeof NaN);
 		},
 		trueExamples: function() {
+			debugger;
 			if ($("body").length) {
 				console.log("Our page has a body tag, and its sexy!");
 			}
 		},
 		sequentialExample: function() {
+			debugger;
 			var Person = function() {
 					this.name = "";
 				};
@@ -155,11 +166,13 @@ jQuery(document).ready(function() {
 			var t = y || x;
 		},
 		functionDeclarationExample: function() {
+			debugger;
 			console.log(new String("that") == "that");
 			console.log(new String("that") === "that");
 			console.log(typeof new String("that"));
 		},
 		createObjectExample: function() {
+			debugger;
 			var candidate = {};
 
 			candidate.name = "Μελένιος";
@@ -184,6 +197,7 @@ jQuery(document).ready(function() {
 			console.log("Hey, if you can create your own gifts, you also know JSON!");
 		},
 		createCustomObject: function() {
+			debugger;
 			function Person(name, surname) {
 				this.name = name;
 				this.surname = surname;
@@ -194,6 +208,7 @@ jQuery(document).ready(function() {
 			var me = new Person("Ακάκιος", "Μίσκου");
 		},
 		createBetterCustomObject: function() {
+			debugger;
 			function Person() {
 
 			}
@@ -213,11 +228,13 @@ jQuery(document).ready(function() {
 			Person.prototype.height = "2.00";
 		},
 		strictGlobals: function() {
+			debugger;
 			for (i = 0; i < 1; i++) {
 				console.log(i);
 			};
 		},
 		strictWrongNames: function() {
+			debugger;
 			var ramOnlineAuthenticationVerifier = true;
 
 			if (ramOnlineAuthenticationVerfirier) {
@@ -225,6 +242,7 @@ jQuery(document).ready(function() {
 			}
 		},
 		looselyTyped: function() {
+			debugger;
 			function Person() {
 
 			}
@@ -245,6 +263,7 @@ jQuery(document).ready(function() {
 			you.baptize("Ακάκιος", "Μίσκου", "Περικλέως");
 		},
 		numbersFloats: function() {
+			debugger;
 			var x = 0.3;
 			var y = 0.1;
 			var z = 0.2;
@@ -255,11 +274,13 @@ jQuery(document).ready(function() {
 			console.log("Solutions? Use math.abs, or make the numbers integers and then divide them again");
 		},
 		selfexecutingFunction: function() {
+			debugger;
 			(function() {
 				console.log("I will be automatically executed. Please spare my life :(")
 			}());
 		},
 		navigate: function() {
+			debugger;
 			var element = $("#jquery-selectors ul li:first");
 			var parent = element.parent();
 			var child = parent.find("li:last");
@@ -268,6 +289,7 @@ jQuery(document).ready(function() {
 			var thirdChild = secondChild.next();
 		},
 		attributes: function() {
+			debugger;
 			$("#jquery-selectors ul li:first").addClass("George");
 			if ($("#jquery-selectors ul li:first").hasClass("George")) {
 				alert("Hi, Im George!");
@@ -290,26 +312,33 @@ jQuery(document).ready(function() {
 			//also important is the .val()
 		},
 		manipulate: function() {
+			debugger;
 			$("#jquery-manipulation ul").prepend("<li>Im first. Horreeeeyy</li>");
 			$("#jquery-manipulation li:last").append(", before, after");
 		},
 		css: function() {
+			debugger;
 			$("#jquery-css li:first").css("color", "red");
 			$("#jquery-css ul").height();
 		},
 		fadeOut: function() {
+			debugger;
 			$("#jquery-effects li:last").fadeOut();
 		},
 		fadeIn: function() {
+			debugger;
 			$("#jquery-effects li:last").fadeIn(5000);
 		},
 		slideUp: function() {
+			debugger;
 			$("#jquery-effects li:last").slideUp(400);
 		},
 		slideDown: function() {
+			debugger;
 			$("#jquery-effects li:last").delay(2000).slideDown();
 		},
 		animate: function() {
+			debugger;
 			//$("#jquery-effects li:last").delay(2000).slideDown();
 			$("#jquery-effects li:last").css("position", "relative").animate({
 				opacity: 0.05,
@@ -323,49 +352,81 @@ jQuery(document).ready(function() {
 					alert("Animation done");
 				});
 			});
+		},
+		ajaxrequest: function() {
+			debugger;
+			var a = new AjaxRequest();
+			a.success = function(data) {
+				console.log(data);
+			}
+			// a.error = function() {
+			// 	console.log("server not responding");
+			// }
+			a.complete = function() {
+				console.log("request completed");
+			}
+			/*var data = {};
+			data.username = "achilleas";
+			data.passqword = "sdfd";*/
+			a.request("http://we.thinkdesquared.com/rf/server/server.php", {}, "json");
+
+			function fire() {
+				var x = 3;
+				function inside(){
+					console.log(x);
+				}
+				return inside;
+			}
+			var t = fire();
+			/*var data = {
+				"errors": {
+					"hasErrors": false,
+					"messages": ["sdfsdf", "sfsdfsd"]
+				},
+				"response": {
+					"accounts": [
+						{
+							"accountNumber": "34242342",
+							"restrictions": true
+						},
+						{
+							"accountNumber": "2333223",
+							"restrictions": false
+						}
+					]
+				}
+			};
+
+			var data = {
+				"errors": {
+					"hasErrors": false,
+					"messages": ["sdfsdf", "sfsdfsd"]
+				},
+				"response": {
+					"accounts": ["34242342", true], ["34242342", true]
+						
+					]
+				}
+			};
+
+			if (!data.errors.hasErrors) {
+				console.log(data.response.accounts[1].accountNumber);
+			}
+
+			for(var i = 0; i < data.response.accounts.length; i++)*/
 		}
 	});
 
 	var appview = new AppView;
-
-	/**
-	 * Define Person
-	 */
-	var Person = function() {
-			this.sex = "dont know";
-		};
-	Person.prototype.sleep = function() {
-		console.log("Im sleeping and im a " + this.sex);
-	};
-	/**
-	 * Define man
-	 */
-	var Man = function() {
-			this.sex = "male";
-		}
-		/**
-		 * Man inherits Person
-		 * @type {Person}
-		 */
-		Man.prototype = Object.create(new Person());
-	Man.prototype.wake = function() {
-		console.log("Im awake");
-	};
-	/**
-	 * We overwrite the sleep function, but we also call the "super".
-	 * We use apply this to change this keywork
-	 *
-	 * @return {[type]} [description]
-	 */
-	Man.prototype.sleep = function() {
-		Person.prototype.sleep.apply(this);
-		console.log("Im snooring");
-	};
-	/*//var o = f();
-	var o = new Object();  
-	o.prototype = f.prototype; */
-	var me = new Man();
-	console.log(me);
-	me.sleep();
-	//debugger;
+	
 });
+
+
+/*
+Create coding standards document
+
+fix validator
+fix main.js
+make the redirect function an object, including the event on .javascript-redirect and include in inheritance
+event bubbling example?
+*/
