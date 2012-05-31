@@ -25,10 +25,10 @@ All binary operators (operators that come between two values), such as +, -, =, 
 
 Braces should be used for multiline blocks in the style shown here:
 
-if ( condition ) {
+if (condition) {
     action1();
     action2();
-} elseif ( condition2 && condition3 ) {
+} elseif (condition2 && condition3) {
     action3();
     action4();
 } else {
@@ -37,7 +37,7 @@ if ( condition ) {
 
 When defining a function, do it like so:
 
-function myfunction( param1, param2 ) { ...
+function myfunction(param1, param2) { ...
 
 6. Quotes
 
@@ -81,3 +81,4 @@ When we create an element, the attribute ordering is:
 	5. ... the rest (e.g. name, value)
 	6. maxlength
 	7. tabindex
+

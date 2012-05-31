@@ -4,7 +4,7 @@
 var leadingZeros = {
 
 	remove: function(value){
-		var result = value.replace(/^[0]+/g,"");
+		var result = value.replace(/^[0]+/g, "");
 
 		return result;
 	}
