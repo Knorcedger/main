@@ -2,7 +2,7 @@ var availableClasses = {
 	"selected": "Used to indicate a selected item in lists, or dropdowns (dsq-dialog)",
 	"dialog-message-button": "If that button has an id='button-delete', it will open the modal with id='modal-delete'",
 	"save-state-classes": "Please refer to the save state documentation",
-	"format-iban": "Resizes the iban inside an input field so that it fits inside the inout field",
+	"format-iban": "Resizes the iban inside an input field so that it fits inside the input field",
 	"iban": "Splits the iban in group of 4 characters",
 	"no-reset": "Used to prevent a field from being reset on reset button click",
 	"none-preselected": "Used for dropdowns, to make them reset to no-option-selected status",
@@ -26,7 +26,7 @@ var callbackFunctions = {
 }
 
 var availableObjects = {
-	"all": "Please check the js/library/ folder. All available object must reside in there"
+	"all": "Please check the js/library/ folder. All available objects must reside in there"
 }
 
 var attachedEvents = {

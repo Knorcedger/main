@@ -709,3 +709,7 @@ b {display: none;}
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+
+.hidden {display: none;}
+
+body {background: black;}

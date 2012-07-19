@@ -1,77 +1,11 @@
 <!doctype html>
 
-<!--
-
-    Welcome to the light side of the source, young padawan.
-
-    One step closer to learn something interesting you are...
-
-                               ____                  
-                            _.' :  `._               
-                        .-.'`.  ;   .'`.-.           
-               __      / : ___\ ;  /___ ; \      __  
-             ,'_ ""=-.:__;".-.";: :".-.":__;.-="" _`,
-             :' `.t""=-.. '<@.`;_  ',@:` ..-=""j.' `;
-                  `:-.._J '-.-'L__ `-.-' L_..-;'     
-                    "-.__ ;  .-"  "-.  : __.-"       
-                        L ' /.======.\ ' J           
-                         "-.   "__"   .-"            
-                        __.l"-:_JL_;-";.__           
-                     .-j/'.;  ;""""  / .'\"-.        
-                   .' /:`. "-.:     .-" .';  `.      
-                .-"  / ;  "-. "-..-" .-"  :    "-.   
-             .+"-.  : :      "-.__.-"      ;-._   \  
-             ; \  `.; ;                    : : "+. ; 
-             :  ;   ; ;                    : ;  : \: 
-             ;  :   ; :                    ;:   ;  : 
-            : \  ;  :  ;                  : ;  /  :: 
-            ;  ; :   ; :                  ;   :   ;: 
-            :  :  ;  :  ;                : :  ;  : ; 
-            ;\    :   ; :                ; ;     ; ; 
-            : `."-;   :  ;              :  ;    /  ; 
-             ;    -:   ; :              ;  : .-"   : 
-             :\     \  :  ;            : \.-"      : 
-              ;`.    \  ; :            ;.'_..-=  / ; 
-              :  "-.  "-:  ;          :/."      .'  :
-               \         \ :          ;/  __        :
-                \       .-`.\        /t-""  ":-+.   :
-                 `.  .-"    `l    __/ /`. :  ; ; \  ;
-                   \   .-" .-"-.-"  .' .'j \  /   ;/ 
-                    \ / .-"   /.     .'.' ;_:'    ;  
-                     :-""-.`./-.'     /    `.___.'   
-                           \ `t  ._  /               
-                            "-.t-._:'                
-
--->
-
-<!--
-    
-    So you'd like to know how to use impress.js?
-    
-    You've made the first, very important step - you're reading the source code.
-    And that's how impress.js presentations are built - with HTML and CSS code.
-    
-    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
-    And what is even more important, you need to be a designer, too, because there are no default
-    styles for impress.js presentations, there is no default or automatic layout for them.
-    
-    You need to design and build it by hand.
-    
-    So...
-    
-    Would you still like to know how to use impress.js?
-    
--->
-
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
-    
-    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
-    <meta name="author" content="Bartek Szopka" />
+    <title>Javascript Presentation</title>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
@@ -87,55 +21,37 @@
     For example this fallback message is only visible when there is `impress-not-supported` class on body.
 -->
 <div class="fallback-message">
-    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
-    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    <p>Your browser  by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest ,  or  browser.</p>
 </div>
 
 <div id="impress">
-
-    <!--
-        
-        Here is where interesting thing start to happen.
-        
-        Each step of the presentation should be an element inside the `#impress` with a class name
-        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
-        the 'camera' shows them on each step of the presentation.
-        
-        Positioning information is passed through data attributes.
-        
-        In the example below we only specify x and y position of the step element with `data-x="-1000"`
-        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
-        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
-        
-        It will not be rotated or scaled.
-        
-    -->
 
     <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
     </div>
 
     <div id="what-is-javascript" class="step slide" data-x="-2000" data-y="-1500">
         <q>What is Javascript?</q>
-        <b>Explain how js started, and that MS uses JScript, so javascript can behave differently in some browsers (we dont use names ;)</b>
+        
     </div>
 
      <div id="javascript-versions" class="step slide" data-x="-1000" data-y="-1500">
         <q>Which Javascript versions are relative today?</q>
-        <b>js versions use 1.x numbers, but the important number is the version of ECMAScript that they are based. We have verions 3, 5, and 6</b>
+        
     </div>
 
     <div id="features-of-javasctipt" class="step slide" data-x="0" data-y="-1500">
         <q>Features of Javascript?</q>
-        <b>Believe it or not, js is a programming language</b>
+        
     </div>
 
     <div id="dynamic" class="step slide" data-x="1000" data-y="-1500">
         <q>Dynamic</q>
         <ul>
             <li><a class="dynamic-typing" href="javascript:void(0);">dynamic typing</a></li>
-            <b></b>
+            
             <li>object based</li>
-            <b>Almost everything is an object in js, from variables to functions</b>
+            
         </ul>
     </div>
 
@@ -143,9 +59,9 @@
         <q>Functional</q>
         <ul>
             <li>first-class functions</li>
-            <b>functions have properties, can be assigned to variables</b>
+            
             <li>nested functions and closures</li>
-            <b>We can have nested functions created when the first one is called</b>
+            
         </ul>
     </div>
 
@@ -154,7 +70,7 @@
         <ul>
             <li>Attach events to the DOM</li>
             <li>jQuery events</li>
-            <b>Are easier to use and act as wrappers to actual js events</b>
+            
         </ul>
     </div>
 
@@ -162,9 +78,9 @@
         <q>Prototype-based</q>
         <ul>
             <li>prototypes</li>
-            <b>JavaScript uses prototypes instead of classes for inheritance.</b>
+            
             <li>functions as object constructors and methods</li>
-            <b>We can have nested functions created when the first one is called</b>
+            
         </ul>
     </div>
 
@@ -184,7 +100,7 @@
         <q>Arrays</q>
         <ul>
             <li>var <a href="javascript:void(0);" class="arrays">animals</a> = ["dog", "cat", "hen"];</li>
-            <b>Arrays' length can change on the fly</b>
+            
         </ul>
     </div>
 
@@ -218,7 +134,7 @@
         <ul>
             <li>What is jQuery?</li>
             <li>Makes the JS interaction with the DOM easier</li>
-            <b>jquery interacts with the DOM not the actual markup</b>
+            
             <li>Cross-browser compatibility</li>
         </ul>
     </div>
@@ -227,11 +143,13 @@
         <q>jQuery Events</q>
         <ul>
             <li>Code execution after <a href="javascript:void(0);" class="basic-click-event">user actions</a></li>
+            <li>Events are attached to DOM Objects</li>
+            <li>Events are bubbling</li>
             <li>jQuery uses the css selectors</li>
             <li>Popular events: click, focus, blur, change, keyboard events</li>
             <li>The <a href="javascript:void(0);" class="correct-click-event">correct way</a> to attach an <a href="javascript:void(0);" class="make-correct-negative">event</a></li>
             <li>The <a href="javascript:void(0);" class="best-click-event">best way</a> to attach an <a href="javascript:void(0);" class="make-best-negative">event</a></li>
-            <b>use only delegation events and explain a bit about the bubbling</b>
+            
         </ul>
     </div>
 
@@ -249,6 +167,7 @@
         <ul>
             <li>We can set DOM attributes</li>
             <li><a href="javascript:void(0);" class="attributes">Popular methods</a>: addClass, prop, attr, html, text, val</li>
+            <li>Im just a place holder. Ignore me</li>
         </ul>
     </div>
 
@@ -281,7 +200,7 @@
                 delay, 
                 <a href="javascript:void(0);" class="animate">animate</a>
             </li>
-            <li>Im just a place holder. Ignore me</li>
+            <li>I can fly! Believe me ;)</li>
         </ul>
     </div>
 
@@ -297,10 +216,11 @@
     <div id="online-documentation" class="step slide" data-x="1000" data-y="4500">
         <q>Where to search for documentation</q>
         <ul>
-            <li>There's no official documentation</li>
-            <li><a href="https://www.google.com/search?hl=en&amp;q=mdn+js+string+functions&amp;meta=">Use Mozilla Developer Network</a></li>            
+            <li>There's no official Javascript documentation</li>
+            <li><a href="https://www.google.com/search?hl=en&amp;q=mdn+js+string+functions&amp;meta=">Use Mozilla Developer Network</a></li>
+            <li><a href="http://docs.jquery.com/Main_Page">jQuery Official Documentation</a></li>           
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
@@ -312,27 +232,13 @@
         <q>Scope</q>
         <ul>
             <li><a class="global-variables" href="javascript:void(0);">Global variables</a></li>
-            <li><a class="local-variables" href="javascript:void(0);">Local variables</a></li><b>declared inside a function</b>
+            <li><a class="local-variables" href="javascript:void(0);">Local variables</a></li>
         </ul>
-        <b>Javascript cannot just put a variable anywhere. It must belong to a variable container. 
-            If you are not in a variable container, javascript will look for the first pair of curly braces that represents a container. This is usually the function itself. 
-            So if you declare a variable inside a for loop, since the for loop is not a container, the function which contains the for loop will become the owner of this variable.
-        </b>
+        
     </div>
 
-     <div id="equality-operators" class="step slide" data-x="8000" data-y="-1500">
-        <q><a href="javascript:void(0);" class="equality">Equality</a> (==) and <a href="javascript:void(0);" class="strict-equality">strict equality</a> (===)</q>
-        <ul>
-            <li>Nothing interesting here</li>
-            <li>Javascript has almost the same operators as any other language</li>
-            <li>But uses them, in interesting ways</li>
-            <li>And executes them in even more interesting ways</li>
-        </ul>
-        <b>explain typeof usage with comparison</b>
-    </div>
-
-     <div id="equality" class="step slide" data-x="7000" data-y="-1500">
-        <q>The following expressions are <a href="javascript:void(0);" class="equality-examples">FALSE</a></q>
+    <div id="equality" class="step slide" data-x="8000" data-y="-1500">
+        <q>The following expressions are <a href="javascript:void(0);" class="false-examples">FALSE</a></q>
         <ul>
             <li>false</li>
             <li>null</li>
@@ -342,12 +248,23 @@
             <li><a href="javascript:void(0);" class="nan">NaN</a></li>
         </ul>
         <q class="lower">Everything else is <a href="javascript:void(0);" class="true-examples">TRUE</a></q>
-        <b></b>
+        
+    </div>
+
+     <div id="equality-operators" class="step slide" data-x="7000" data-y="-1500">
+        <q><a href="javascript:void(0);" class="equality">Equality</a> (==) and strict equality (===)</q>
+        <ul>
+            <li>Javascript has almost the same operators as any other language</li>
+            <li>But uses them, in interesting ways</li>
+            <li>And executes them in even more interesting ways</li>
+            <li>Now you can go back and see the NaN example</li>
+        </ul>
+        
     </div>
 
     <div id="sequential" class="step slide" data-x="6000" data-y="-1500">
         <q>Javascript evaluation is <a href="javascript:void(0);" class="sequential">sequential</a></q>
-        <b></b>
+        
     </div>
 
     <div id="function-declaration" class="step slide" data-x="5000" data-y="-1500">
@@ -358,7 +275,7 @@
             <li>var name = function name() {}</li>
             <li><a href="javascript:void(0);" class="function-declaration">var name = new Function() {}</a></li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="objects" class="step slide" data-x="5000" data-y="-500">
@@ -366,7 +283,7 @@
         <ul>
             <li><a href="javascript:void(0);" class="create-object">Create an Object</a></li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="prototypes" class="step slide" data-x="6000" data-y="-500">
@@ -375,7 +292,7 @@
             <li><a href="javascript:void(0);" class="create-custom-object">Create a custom object</a></li>
             <li><a href="javascript:void(0);" class="create-better-custom-object">Create a better custom object</a></li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="use-strict" class="step slide" data-x="5000" data-y="500">
@@ -384,7 +301,7 @@
             <li><a href="javascript:void(0);" class="strict-globals">No more accidental globals</a></li>
             <li><a href="javascript:void(0);" class="strict-wrong-names">No more variable spelling errors</a></li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="things-to-know" class="step slide" data-x="6000" data-y="500">
@@ -392,13 +309,13 @@
         <ul>
             <li>Automatic Semicolon Insertion</li>
             <li><a href="javascript:void(0);" class="loosely-typed">Loosely typed</a></li>
-            <li><a href="javascript:void(0);" class="numbers-floats">All numbers are floats</a></li>
-            <li>Avoid syncronous Ajax calls at all costs</li><b>example in next presentation</b>
+            <li><a href="javascript:void(0);" class="numbers-binary">All numbers are saved in binary format</a></li>
+            <li>Avoid syncronous Ajax calls at all costs</li>
             <li><a href="javascript:void(0);" class="selfexecuting-function">Selfexecuting/Selfinvoked function</a></li>
-            <li>Use the element id as param (not selector or element reference)</li>
-            <li>DOnt use global variables</li>
+            <li>Use the element <a href="javascript:void(0);" id="param" class="param">id as param</a> (not selector or element reference)</li>
+            <li>Dont use global variables</li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
@@ -412,17 +329,17 @@
             <li>FDS</li>
             <li>TDS</li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="backbone-appview" class="step slide" data-x="6000" data-y="1500">
         <q>Create a backbone AppView</q>
-        <b>they must be familiar with backbone AppViews</b>
+        
     </div>
 
     <div id="initialize" class="step slide" data-x="7000" data-y="1500">
         <q>Initialize (on load)</q>
-        <b>first do any actions that need to be done here</b>
+        
     </div>
 
     <div id="events" class="step slide" data-x="8000" data-y="1500">
@@ -431,7 +348,7 @@
             <li>Declare the necessary events</li>
             <li>And their callbacks</li>
             <li>Use the predefined callbacks (listClicked, dialogClicked..)</li>
-            <b></b>
+            
         </ul>
     </div>
 
@@ -447,7 +364,7 @@
         <q>New functionality</q>
         <ul>
             <li>Is it page specific?</li>
-            <b></b>
+            
         </ul>
     </div>
 
@@ -466,7 +383,7 @@
         <q>Proper documentation</q>
         <ul>
             <li><a href="http://code.google.com/p/jsdoc-toolkit/">jsDoc</a></li>
-            <b>We didnt found any eclipse tools</b>
+            
         </ul>
     </div>
 
@@ -481,7 +398,7 @@
         <q>Unified coding style</q>
         <ul>
             <li>Coding standards</li>
-            <b>Present the coding standards that must be followed. Sent them as a document, will be on wiki</b>
+            
             <li><a href="http://jsbeautifier.org/">jsBeautifier</a></li>
         </ul>
     </div>
@@ -491,51 +408,29 @@
         <ul>
             <li>Checklist</li>
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="ready-new-objects" class="step slide" data-x="6000" data-y="4500">
         <q>Ready and new Objects</q>
         <ul>
             <li>library folder</li>
-            <b>Talk about the js folder structure when somebody will create a new file there</b>
+            
             <li><a href="javascript:void(0);" class="ajaxrequest">AjaxRequest.js</a></li>
-            <b>Θα σταματήσουμε να χρησιμοποιούμε -variables.jsp αρχεία, αφού όλα τα requests θα περνάνε πλέον από το AjaxRequest</b>
+            
             <li>Validator.js</li>
             <li>main.js</li>
-            <b>
-                I will have to organize it into object in the next week or so
-                Any new functionality that will go into main.js will have to go through me during that process
-                After that, you will have to minify your new object and add it on the top of main.js
-
-                Explain main.js functions and classes
-            </b>
+            
         </ul>
-        <b></b>
+        
     </div>
 
     <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
     </div>
 
      <div id="debugging" class="step slide" data-x="5000" data-y="4500">
-        <q>Debugging tips 'n Tricks</q>
-        <b>
-            
-            how we debug js. alert and console an object to show why we use console. console may crash ie, so use this script,
-currenctly found on top of settings.js// This will prevent js to crash on IE when cosnole is used
-if (typeof console == "undefined" || typeof console.log == "undefined") var console = { log: function() {} }; 
-show example breakpoint, use the the function definition we showed before to explain the call stack
-breakpoints on elements change can be added too
-event listeners breakpoints
-pause on exceptions (usefull when an error happens inside a for loop, but it happens sometimes)
-can view/change values
-can edit js and css while paused.
-all edits are saved as revisions and can be viewed in resources
-example with console.dir console.dir(myFunction)
-debugger command when an error happens on load.
-How to make breadpoints being saved during page changes/refreshes
-            
-        </b>
+        <q>Debugging tips 'n tricks</q>
+        
     </div>
 
 </div>

@@ -41,9 +41,7 @@ function myfunction(param1, param2) { ...
 
 6. Quotes
 
-Double quotes are used except the language we use requires otherwise. Like:
-
-var myvar = "text";
+Double or single quotes can be used at free will, except if the language we use requires otherwise.
 
 7. Comments
 
@@ -58,27 +56,10 @@ To document a block of code, such as a file, function, class, method, constant, 
  * Documentation here.
  */
 
- phpDoc, javaDoc etc can be used when necessary
+jsDoc, phpDoc, javaDoc etc can be used when necessary
 
 8. TODOs
 
 To document known issues and development tasks in code, TODO statements may be used. Each TODO should form an atomic task.
 
 //TODO: Make the date calculation more elegant.
-
-/**
- * HTML Coding Standards
- */
-
-1. Attributes Ordering
-
-When we create an element, the attribute ordering is:
-
-	1. type
-	2. id
-	3. class
-	4. name
-	5. ... the rest (e.g. name, value)
-	6. maxlength
-	7. tabindex
-
