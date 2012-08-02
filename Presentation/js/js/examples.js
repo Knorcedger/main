@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 
-	//"use strict";
+	"use strict";
 
 	/*var x = 3;
 
@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
 			"click .ajaxrequest": "ajaxrequest",
 			"click .param": "param"
 		},
-		dynamicTypingExample: function() {
+		dynamicTypingExample: function(event) {
 			debugger;
 			var x = 10;
 			x = "I prefer being a string ;)";
