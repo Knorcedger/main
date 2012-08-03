@@ -12,11 +12,11 @@
 /**
  * A simple text cutter
  * 
- * @return string The cutten text
+ * @return string The cut text
  * @param string $text
  * @param int $limit The characters to cut at
  * @param int $cut_on_space If to cut on a space or between words
- * @param string $allow The tags to allow (<br><a>...)
+ * @param string $allow The tags to allow inside the text returned(<br><a>...). All other tags are removed.
  */
 function wk_cut_text($text, $limit, $cut_on_space = 1, $allow = '') {
 	//strip tags

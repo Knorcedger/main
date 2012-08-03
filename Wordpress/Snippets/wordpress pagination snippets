@@ -1,0 +1,43 @@
+<?php
+			wk_navigation_calculations('gr', 10, 1);
+			$cat_title = single_cat_title('', false);
+			$cat_ID = get_cat_ID($cat_title);
+			
+			global $wpdb;
+			$querystr = "SELECT * FROM $wpdb->posts
+						LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+						LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+						LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+						WHERE $wpdb->term_taxonomy.taxonomy = 'category'
+						AND $wpdb->term_taxonomy.term_id = $cat_ID
+						AND $wpdb->posts.post_status = 'publish'
+						AND 
+						(
+							($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'event')
+							OR ($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'external_new')
+						)
+						ORDER BY $wpdb->posts.post_date DESC
+						LIMIT $limit_down, 10";
+			
+			$query2 = "SELECT COUNT(*) AS posts_num FROM $wpdb->posts
+						LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+						LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+						LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+						WHERE $wpdb->term_taxonomy.taxonomy = 'category'
+						AND $wpdb->term_taxonomy.term_id = $cat_ID
+						AND $wpdb->posts.post_status = 'publish'
+						AND 
+						(
+							($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'event')
+							OR ($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'external_new')
+						)
+						GROUP BY $wpdb->posts.post_status";
+
+			$posts_num = $wpdb->get_var($query2);
+
+			$my_query = new WP_Query();
+			$custom_posts = $wpdb->get_results($querystr);
+			foreach ($custom_posts as $post) {
+				setup_postdata($post);
+				$post_ID = get_the_ID();
+				?>

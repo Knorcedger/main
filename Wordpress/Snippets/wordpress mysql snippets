@@ -1,0 +1,106 @@
+<?php
+//SELECT POSTS FROM CERTAIN CONTENT TYPE
+$querystr = "SELECT wposts.*
+				FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta
+				WHERE wposts.ID = wpostmeta.post_id 
+				AND wpostmeta.meta_key = 'content_type' 
+				AND wpostmeta.meta_value = 'news_topic'
+				AND wposts.post_status = 'publish' 
+				AND wposts.post_type = 'post' 
+				ORDER BY wposts.post_date DESC";
+				
+//SELECT POSTS FROM MULTIPLE CONTENT TYPES
+$querystr = "SELECT wposts.*
+				FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta
+				WHERE wposts.ID = wpostmeta.post_id 
+				AND 
+				(
+					(wpostmeta.meta_key = 'content_type' AND wpostmeta.meta_value = 'news_topic')
+					OR (wpostmeta.meta_key = 'content_type' AND wpostmeta.meta_value = 'new')
+				)
+				AND wposts.post_status = 'publish' 
+				AND wposts.post_type = 'post' 
+				ORDER BY wposts.post_date DESC";
+				
+//SELECT POSTS WITH MULTIPLE DIFFERENT CUSTOM KEYS
+$querystr = "SELECT wposts.*
+				FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta, $wpdb->postmeta wpostmeta2
+				WHERE wposts.ID = wpostmeta.post_id AND wposts.ID = wpostmeta2.post_id
+				AND
+				(
+					(wpostmeta.meta_key = 'news_topic' AND wpostmeta.meta_value = '$post_title')
+					OR (wpostmeta.meta_key = 'news_topic_2' AND wpostmeta.meta_value = '$post_title')
+					OR (wpostmeta.meta_key = 'news_topic_3' AND wpostmeta.meta_value = '$post_title')
+				)
+				AND 
+				(
+					(wpostmeta2.meta_key = 'content_type' AND wpostmeta2.meta_value = 'new')
+					OR (wpostmeta2.meta_key = 'content_type' AND wpostmeta2.meta_value = 'external_new')
+				)
+				AND wposts.post_status = 'publish' 
+				AND wposts.post_type = 'post' 
+				ORDER BY wposts.post_date DESC
+				LIMIT 10";
+				
+//SELECT POSTS FROM CERTAIN CATEGORY AND SINGLE OR MULTIPLE CONTENT TYPES
+$querystr = "SELECT DISTINCT * 
+					FROM wp_posts, wp_term_relationships, wp_term_taxonomy 
+					WHERE wp_term_relationships.object_id = wp_posts.id 
+					AND post_status = 'publish' 
+					AND post_type = 'post' 
+					AND wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id 
+					AND wp_term_taxonomy.taxonomy = 'category' 
+					AND wp_term_taxonomy.term_id = '$cat_ID'
+					ORDER BY wp_posts.post_date DESC";
+
+$querystr_left_only_for_reference = "SELECT * FROM $wpdb->posts
+				LEFT JOIN $wpdb->postmeta ON($wpdb->posts.ID = $wpdb->postmeta.post_id)
+				LEFT JOIN $wpdb->term_relationships ON($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+				LEFT JOIN $wpdb->term_taxonomy ON($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+				WHERE $wpdb->term_taxonomy.taxonomy = 'category'
+				AND $wpdb->term_taxonomy.term_id = $cat_ID
+				AND $wpdb->posts.post_status = 'publish'
+				AND 
+				(
+					($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'new')
+					OR ($wpdb->postmeta.meta_key = 'content_type' AND $wpdb->postmeta.meta_value = 'external_new')
+				)
+				ORDER BY $wpdb->posts.post_date DESC
+				LIMIT $limit_down, 10";
+				
+
+				
+//VIEWS
+$querystr = "SELECT DISTINCT wposts.*, (wpostmeta.meta_value+0) AS views FROM wp_posts wposts, wp_postmeta wpostmeta, wp_postmeta wpostmeta2 WHERE wposts.ID = wpostmeta.post_id AND wposts.ID = wpostmeta2.post_id AND wposts.post_status = 'publish' AND wpostmeta.meta_key = 'views' AND (wpostmeta2.meta_key = 'content_type' AND wpostmeta2.meta_value = 'new') AND wposts.post_password = '' ORDER  BY views DESC LIMIT 10";
+
+//VIEWS WITH DATE CHECK
+$querystr = "SELECT DISTINCT wposts.*, (wpostmeta.meta_value+0) AS views 
+							FROM wp_posts wposts, wp_postmeta wpostmeta, wp_postmeta wpostmeta2 
+							WHERE wposts.ID = wpostmeta.post_id 
+							AND wposts.ID = wpostmeta2.post_id 
+							AND wposts.post_status = 'publish' 
+							AND wpostmeta.meta_key = 'views' 
+							AND wpostmeta2.meta_key = 'content_type' 
+							AND wpostmeta2.meta_value = 'new' 
+							AND wposts.post_password = '' 
+							AND wposts.post_date > DATE_ADD(CURDATE(), INTERVAL -5 DAY)
+							ORDER BY views DESC 
+							LIMIT 5";
+							
+//COUNT POSTS WITH CERTAIN POST METAS
+$querystr = "SELECT COUNT(wposts.post_status) AS items
+				FROM wp_posts wposts, wp_postmeta wpostmeta, wp_postmeta wpostmeta2
+				WHERE wposts.ID = wpostmeta.post_id AND wposts.ID = wpostmeta2.post_id
+				AND
+				(
+					(wpostmeta.meta_key = 'order_id' AND wpostmeta.meta_value = '526')
+				)
+				AND 
+				(
+					(wpostmeta2.meta_key = 'content_type' AND wpostmeta2.meta_value = 'carpet')
+				)
+				AND wposts.post_status = 'publish' 
+				AND wposts.post_type = 'post' 
+				group BY wposts.post_status";
+
+?>
