@@ -1,9 +1,0 @@
-<?php
-	//english
-	$confirmation_message_txt = 'Το μήνυμά σας απεστάλει. Θα σας απαντήσουμε το συντομότερο δυνατό.';
-	$name_txt = 'Όνομα';
-	$email_txt = 'Email';
-	$subject_txt = 'Θέμα';
-	$message_txt = 'Μήνυμα';
-	$send_txt = 'Αποστολή';
-?>
