@@ -1,0 +1,42 @@
+.hidden {
+	display: none;
+}
+
+body {
+	margin 0 auto;
+}
+
+#header {
+	background: #7f007f;
+	color: white;
+	height: 60px;
+	text-align: center;
+}
+
+#main table {
+	font-size: 12px;
+}
+
+#main table td {
+	text-align: center;
+}
+
+#video-list {
+	border: 1px solid #efefef;
+	padding: 10px;
+	width: 100%;
+}
+
+#video-list tr {
+	height: 50px;
+}
+
+.image {
+	/*float: left;*/
+	margin-right: 20px;
+}
+
+.title {
+	/*float: left;*/
+	width: 400px;
+}
