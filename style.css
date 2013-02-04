@@ -3,40 +3,71 @@
 }
 
 body {
-	margin 0 auto;
+
+	background: #eeeeee;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 980px;
 }
 
 #header {
 	background: #7f007f;
 	color: white;
-	height: 60px;
-	text-align: center;
+	padding: 20px 0 20px 20px;
+	border: 5px solid #white;
+	font-size: 18px;
+	font-weight: bold;
 }
 
-#main table {
-	font-size: 12px;
-}
-
-#main table td {
-	text-align: center;
+#page-header {
+	margin: 30px 0 10px 20px;
 }
 
 #video-list {
-	border: 1px solid #efefef;
+	font-size: 12px;
+}
+
+#video-list .video {
+	display: block;
+	box-shadow: 0px 2px 2px #888;
 	padding: 10px;
-	width: 100%;
+	margin-bottom: 10px;
+	background: white;
+	border: 1px solid #bcbcbc;
 }
 
-#video-list tr {
-	height: 50px;
-}
-
-.image {
-	/*float: left;*/
+#video-list .image {
 	margin-right: 20px;
+	display: inline-block;
 }
 
-.title {
-	/*float: left;*/
-	width: 400px;
+#video-list .title {
+	width: 500px;
+	text-align: left;
+	display: inline-block;
+	line-height: 13px;
+}
+
+#video-list .download {
+	float: right;
+	position: relative;
+}
+
+#video-list .downloads {
+	position: absolute;
+	top: 27px;
+	right: 0px;
+	background: #222222;
+	border: 2px solid white;
+	box-shadow: 5px 5px 5px #888;
+	color: white;
+	padding: 10px;
+	width: 40px;
+	z-index: 10;
+}
+
+#video-list .downloads a {
+	color: rgb(79, 196, 255);
 }

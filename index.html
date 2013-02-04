@@ -1,10 +1,11 @@
-<html>
+<html ng-app="VideoDownload">
 <head>
 	<title>Twitch TV Downloader</title>
 	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="style.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
 	<script src="main.js"></script>
 </head>
 <body>
@@ -13,36 +14,32 @@
 			Twitch TV Downloader
 		</div>
 		<div id="main" class="container">
-			<table id="video-list">
-				<tr class="video">
-					<td class="image">
-						<img src="http://static-cdn.jtvnw.net/jtv.thumbs/archive-350366166-320x240.jpg" width="32" height="24" />
-					</td>
-					<td class="title">
-						Scarra's stream. Solo Q.Q. Trying out some new playlists. Playing a few before dinner.
-					</td>
-					<td class="date">
-						2012-12-23 02:50:23 UTC
-					</td>
-					<td class="download">
-						<!-- <a class="show-downloads" href="javascript:void(0);">Download</a> -->
-						<!-- <div class="downloads hidden"> -->
-							<div class="part">
-								<span class="text">Part 1</span>
-								<span class="file"><a href="http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv">Download</a></span>
+
+			<div id="page-header">
+				Scarra's stream
+			</div>
+
+			<div id="video-list" ng-controller="VideoCtrl">
+				<div class="video" ng-repeat="video in videos">
+					<span class="image">
+						<img src="{{video.parts[0].image_url_medium}}" width="32" height="24" />
+					</span>
+					<span class="title">
+						{{video.parts[0].title}}
+					</span>
+					<span class="date">
+						{{video.parts[0].date}}
+					</span>
+					<span class="download">
+						<a class="show-downloads" href="javascript:void(0);" display-downloads>Download</a>
+						<div class="downloads hidden">
+							<div class="part" ng-repeat="part in video.parts">
+								<span class="file"><a href="{{part.video_file_url}}">Part {{$index + 1}}</a></span>
 							</div>
-							<div class="part">
-								<span class="text">Part 2</span>
-								<span class="file"><a href="http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv">Download</a></span>
-							</div>
-							<div class="part">
-								<span class="text">Part 3</span>
-								<span class="file"><a href="http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv">Download</a></span>
-							</div>
-						<!-- </div> -->
-					</td>
-				</tr>
-			</table>
+						</div>
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
