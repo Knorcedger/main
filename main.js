@@ -1,51 +1,69 @@
 var app = angular.module("VideoDownload", []);
 
-app.factory("Videos", function() {
-	var Videos = [
-		{
-			parts: [
-				{
-					image_url_medium: "http://static-cdn.jtvnw.net/jtv.thumbs/archive-350366166-320x240.jpg",
-					title: "Scarra's stream. Solo Q.Q. Trying out some new playlists. Playing a few before dinner.",
-					created_on: "2012-12-23 02:50:23 UTC",
-					file_size: "481327322",
-					video_file_url: "http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv"
-				},
-				{
-					image_url_medium: "http://static-cdn.jtvnw.net/jtv.thumbs/archive-350366166-320x240.jpg",
-					title: "2 Scarra's stream. Solo Q.Q. Trying out some new playlists. Playing a few before dinner.",
-					created_on: "2012-12-23 02:50:23 UTC",
-					file_size: "481327322",
-					video_file_url: "http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv"
-				}
-			]
-		},
-		{
-			parts: [
-				{
-					image_url_medium: "http://static-cdn.jtvnw.net/jtv.thumbs/archive-350366166-320x240.jpg",
-					title: "Scarra's stream. Solo Q.Q. Trying out some new playlists. Playing a few before dinner.",
-					created_on: "2012-12-23 02:50:23 UTC",
-					file_size: "481327322",
-					video_file_url: "http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv"
-				},
-				{
-					image_url_medium: "http://static-cdn.jtvnw.net/jtv.thumbs/archive-350366166-320x240.jpg",
-					title: "2 Scarra's stream. Solo Q.Q. Trying out some new playlists. Playing a few before dinner.",
-					created_on: "2012-12-23 02:50:23 UTC",
-					file_size: "481327322",
-					video_file_url: "http://media25.justin.tv/archives/2012-12-23/live_user_scarra_1356229192.flv"
-				}
-			]
-		}
-	];
+app.service("VideoService", function($rootScope, $http) {
 
-	return Videos;
+	var service = {
+		url: "http://fashionway.gr/t/fetch.php",
+		videos: {},
+	}
+
+	function _setVideos(videos) {
+		service.videos = videos;
+		$rootScope.$broadcast("videosUpdated");
+	}
+
+	return {
+		getUrl: function() {
+			return service.url;
+		},
+		setVideos: function(videos) {
+			_setVideos(videos);
+		},
+		getVideos: function() {
+			return service.videos;
+		},
+		fetchVideos: function(params) {
+			var req = $http.post(service.url, {
+				"stream": params.stream,
+				"limit": params.limit,
+				"offset": params.offset
+			});
+
+			req.success(function(data, status, headers, config) {
+				_setVideos(data);
+				params.success(data, status, headers, config);
+			});
+		}
+	};
 });
 
-app.directive("displayDownloads", function() {
+app.service("MessageService", function($rootScope) {
+
+	var service = {
+		text: "",
+		type: "info"
+	}
+
+	/*_setType function(type) {
+		service.type = type;
+	}*/
+
+	return {
+		getMessage: function() {
+			return service;
+		},
+		setMessage: function(message) {
+			service.text = message.text;
+			service.type = message.type;
+			$rootScope.$broadcast("messageUpdated");
+		}
+	};
+});
+
+/*app.directive("displayDownloads", function() {
 	return function(scope, element) {
 		element.bind("click", function() {
+			scope.visibleDownloads = false;
 			var downloads = $(element).parent().find(".downloads");
 			if (downloads.is(":visible")) {
 				downloads.fadeOut();
@@ -55,30 +73,81 @@ app.directive("displayDownloads", function() {
 			}
 		})
 	}
-});
+});*/
 
-function VideoCtrl($scope, Videos, $http) {
-
-	console.log($http.defaults.headers);
-	//$http.defaults.headers.post["Host"] = "wikipedia.com";
-	//$http.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
-
-	$('#main').load('http://google.com');
-
-	$.ajax({
-		dataType: "json",
-		url: 'http://api.justin.tv/api/channel/archives/scarra.json',
-		data: {},
-		success: function(data) {
-			debugger;
+app.controller("MessageCtrl", function($scope, MessageService) {
+	$scope.messageTimeout = 5000;
+	$scope.text = "";
+	$scope.type = "info";
+	//on messageUpdated event, update our model from the service
+	$scope.$on("messageUpdated", function() {
+		$scope.text = MessageService.getMessage().text;
+		$scope.type = MessageService.getMessage().type;
+		// remove the message
+		if($scope.text) {
+			setTimeout(function() {
+				MessageService.setMessage({message: "", type: "info"});
+			}, $scope.messageTimeout);
 		}
 	});
+});
 
-	/*$http.post('http://api.justin.tv/api/channel/archives/scarra.json').success(function(data) {
-		debugger;
-		$scope.phones = data;
-	});*/
+app.controller("VideoCtrl", function($scope, $http, VideoService) {
+	// on videosUpdated, update the model
+	$scope.$on("videosUpdated", function() {
+		$scope.videos = VideoService.getVideos();
+	});
 
-	$scope.videos = Videos;
+});
 
-};
+app.controller("PaginationCtrl", function($scope, $http, VideoService, MessageService) {
+	$scope.page = 1;
+	$scope.channel = "";
+	$scope.stream = "";
+	$scope.limit = 20;
+	$scope.offset = 0;
+
+	setTimeout(function(){console.log($scope.stream)},5000);
+
+	$scope.fetch = function() {
+		$scope.stream = "http://api.justin.tv/api/channel/archives/" + $scope.channel + ".json";
+		var params = {
+			stream: $scope.stream,
+			limit: $scope.limit,
+			offset: $scope.offset,
+			success: function(data, status, headers, config) {
+				// if (data.error) {
+				var message = {
+					text: "Take it slow dude. You now have to wait a few seconds",
+					type: "warning"
+				}
+				MessageService.setMessage(message);
+				// }
+			}
+		}
+		VideoService.fetchVideos(params);
+	}
+
+	$scope.previousPage = function() {
+		if($scope.page !== 1) {
+			$scope.page--;
+			$scope.$broadcast("pageChanged");
+		}
+	}
+
+	$scope.nextPage = function() {
+		$scope.page++;
+		$scope.$broadcast("pageChanged");
+	}
+
+	$scope.$on("pageChanged", function() {
+		$scope.offset = $scope.limit * ($scope.page - 1);
+		$scope.fetch();
+	});
+
+	$scope.$on("pageChanged", function() {
+		$scope.offset = $scope.limit * ($scope.page - 1);
+		$scope.fetch();
+	});
+
+});
