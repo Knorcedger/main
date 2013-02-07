@@ -1,1 +1,7 @@
-Test by c9
+TODO:
+
+1. Url changes
+2. Stop ajax requests when performing a new one
+3. Display big photos on photo hover
+4. Beautify the search input
+5. Single video downloads

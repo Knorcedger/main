@@ -107,22 +107,21 @@ app.controller("PaginationCtrl", function($scope, $http, VideoService, MessageSe
 	$scope.limit = 20;
 	$scope.offset = 0;
 
-	setTimeout(function(){console.log($scope.stream)},5000);
-
 	$scope.fetch = function() {
+		
 		$scope.stream = "http://api.justin.tv/api/channel/archives/" + $scope.channel + ".json";
 		var params = {
 			stream: $scope.stream,
 			limit: $scope.limit,
 			offset: $scope.offset,
 			success: function(data, status, headers, config) {
-				// if (data.error) {
-				var message = {
-					text: "Take it slow dude. You now have to wait a few seconds",
-					type: "warning"
+				if (data.error) {
+					var message = {
+						text: "Take it slow dude. You now have to wait a few seconds",
+						type: "warning"
+					}
+					MessageService.setMessage(message);
 				}
-				MessageService.setMessage(message);
-				// }
 			}
 		}
 		VideoService.fetchVideos(params);

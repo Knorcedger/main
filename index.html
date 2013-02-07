@@ -4,13 +4,12 @@
 	<!-- <link rel="stylesheet" href="bootstrap.css"> -->
 	<link rel="stylesheet" href="style.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
 	<script src="main.js"></script>
 </head>
 <body>
 	<div id="wrapper">
-		<span class="message-panel {{type}}" ng-class="{hidden: !message}" ng-controller="MessageCtrl">{{message}}</span>
+		<span class="message-panel {{type}}" ng-class="{hidden: !text}" ng-controller="MessageCtrl">{{text}}</span>
 		<div id="header">
 			Twitch TV Downloader
 		</div>
@@ -27,14 +26,15 @@
 				</div>
 				<div class="input">
 					Please insert the channel name e.g. scarra
-					<input type="text" class="" ng-change="fetch()" ng-model="channel" />
+					<input type="text" class="" ng-model="channel" />
+					<input type="button" ng-click="fetch()" value="GO!" />
 				</div>
 			</div>
 
 			<div id="video-list" ng-controller="VideoCtrl" ng-class="{hidden: !videos.length}">
 				<div class="video" ng-repeat="video in videos">
 					<span class="image">
-						<img src="{{video.image_url_medium}}" width="32" height="24" />
+						<img ng-src="{{video.image_url_medium}}" width="32" height="24" />
 					</span>
 					<span class="title">
 						{{video.title}}
