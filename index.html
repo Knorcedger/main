@@ -1,40 +1,42 @@
 <html ng-app="VideoDownload">
 <head>
 	<title>Twitch TV Downloader</title>
-	<!-- <link rel="stylesheet" href="bootstrap.css"> -->
+
 	<link rel="stylesheet" href="style.css">
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-	<script src="main.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
+	<script src="app.js"></script>
+	<script src="js/services/ChannelService.js"></script>
+	<script src="js/controllers/ChannelCtrl.js"></script>
+	<script src="js/directives/message.js"></script>
 </head>
 <body>
-	<div id="wrapper">
-		<span class="message-panel {{type}}" ng-class="{hidden: !text}" ng-controller="MessageCtrl">{{text}}</span>
+	<!-- <span class="message-panel {{type}}" ng-class="{hidden: !text}" message>{{text}}</span> -->
+	<div id="wrapper" ng-controller="ChannelCtrl">
+	<message message-text="messageText" message-type="messageType"></message>
 		<div id="header">
-			Twitch TV Downloader
+			<span class="title">Twitch TV Downloader</span>
+			<form id="search-form" ng-submit="submit()">
+				<input type="text" class="search-input" placeholder="Channel Name" name="channel-name" ng-model="newChannelName" />
+			</form>
 		</div>
 		<div id="main" class="container">
 
-			<div id="page-header" ng-controller="PaginationCtrl">
-				<div class="results" ng-class="{hidden: !channel}">
-					<span class="title">{{channel}}'s stream</span>
+			<div id="page-header">
+				<div ng-class="{hidden: !channel.videos.length}">
+					<span class="title">{{channel.name}}'s stream</span>
 					<span class="pagination top">
-						<span class="current-page">Page: {{page}}</span>
-						<input type="button" class="previous-page" value="Previous" ng-click="previousPage()" />
-						<input type="button" class="next-page" value="Next" ng-click="nextPage()" />
+						<span class="current-page">Page: {{channel.pagination.page}}</span>
+						<input type="button" class="previous-page" value="Previous" ng-click="changePage('previous')" />
+						<input type="button" class="next-page" value="Next" ng-click="changePage('next')" />
 					</span>
-				</div>
-				<div class="input">
-					Please insert the channel name e.g. scarra
-					<input type="text" class="" ng-model="channel" />
-					<input type="button" ng-click="fetch()" value="GO!" />
 				</div>
 			</div>
 
-			<div id="video-list" ng-controller="VideoCtrl" ng-class="{hidden: !videos.length}">
-				<div class="video" ng-repeat="video in videos">
+			<div id="video-list" ng-class="{hidden: !channel.videos.length}">
+				<div class="video" ng-repeat="video in channel.videos">
 					<span class="image">
-						<img ng-src="{{video.image_url_medium}}" width="32" height="24" />
+						<img ng-src="{{video.image_url_medium}}" width="32" height="24" zoom="{}" />
 					</span>
 					<span class="title">
 						{{video.title}}
@@ -44,14 +46,23 @@
 					</span>
 					<span class="download">
 						<a class="show-downloads" href="{{video.video_file_url}}" display-downloads>Download</a>
-						<div class="downloads hidden" ng-init="isVivible=false">
-							<div class="part" <!-- ng-repeat="part in video.parts" -->>
+						<div class="downloads hidden" ng-init="isVisible=false">
+							<div class="part" ng-repeat="part in video.parts">
 								<span class="file"><a href="{{part.video_file_url}}">Part {{$index + 1}}</a></span>
 							</div>
 						</div>
 					</span>
 				</div>
 			</div>
+
+			<div ng-class="{hidden: !channel.videos.length}">
+				<span class="pagination bottom">
+					<span class="current-page">Page: {{channel.pagination.page}}</span>
+					<input type="button" class="previous-page" value="Previous" ng-click="changePage('previous')" />
+					<input type="button" class="next-page" value="Next" ng-click="changePage('next')" />
+				</span>
+			</div>
+
 		</div>
 	</div>
 </body>

@@ -1,7 +1,13 @@
 TODO:
 
 1. Url changes
-2. Stop ajax requests when performing a new one
 3. Display big photos on photo hover
+- Make the search to start on input enter press instead of clicking the GO button
+- Make the pagination appear on the page bottom as well
+- Group the videos that are part of the same video
+- Add google adsense
+- Add a contact form
+- Collect data about the most viewed channels, and maybe display them.
 4. Beautify the search input
 5. Single video downloads
+Disable the change page buttons while fetching from the server

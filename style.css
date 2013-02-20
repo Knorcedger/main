@@ -3,8 +3,13 @@
 	font-size: 12px;
 }
 
+*:focus {
+    outline: none;
+}
+
 a {
 	text-decoration: none;
+	color: #7F007F;
 }
 
 .hidden {
@@ -24,10 +29,40 @@ body {
 #header {
 	background: #7f007f;
 	color: white;
-	padding: 20px 0 20px 20px;
-	border: 5px solid #white;
+	padding: 0 20px;
+	border-top: 0px;
+	border-right: 5px solid white;
+	border-bottom: 3px solid white;
+	border-left: 5px solid white;
+	border-radius: 0 0 15px 15px;
 	font-size: 18px;
 	font-weight: bold;
+	box-shadow: 0px 2px 2px #aaa;
+	height: 60px;
+}
+
+#header .title {
+	font-size: 20px;
+	text-shadow: 0px 2px 2px #444;
+	position: relative;
+	top: 18px;
+}
+
+#header #search-form {
+	float: right;
+	margin-right: 20px;
+	position: relative;
+	top: 10px;
+}
+
+#header .search-input {
+	background-color: rgba(100, 0, 100, .6);
+	border: 5px solid rgba(148, 47, 148, 1);
+	border-radius: 28px;
+	padding: 5px;
+	font-weight: bold;
+	color: #fff;
+	box-shadow: 0px 0px 16px white;
 }
 
 #page-header {
@@ -36,6 +71,7 @@ body {
 
 #page-header .title {
 	font-size: 14px;
+
 }
 
 .message-panel {
@@ -43,7 +79,7 @@ body {
 	padding: 5px;
 	border: 1px solid #222222;
 	position: fixed;
-	top: 20px;
+	top: 40px;
 	width: 200px;
 	min-height: 50px;
 	right: 20px;
@@ -51,6 +87,7 @@ body {
 	font-weight: bold;
 	border: 2px solid;
 	opacity: 0.9;
+	z-index: 10;
 }
 
 .message-panel.info {
@@ -122,6 +159,10 @@ body {
 
 .pagination {
 	float: right;
+}
+
+.pagination.bottom {
+	margin-bottom: 20px;
 }
 
 .next-page, .previous-page {
