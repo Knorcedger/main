@@ -1,69 +1,51 @@
-<html ng-app="VideoDownload">
+<html ng-app="TwitchDownload">
 <head>
 	<title>Twitch TV Downloader</title>
 
 	<link rel="stylesheet" href="style.css">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
-	<script src="app.js"></script>
-	<script src="js/services/ChannelService.js"></script>
+	<script src="http://code.angularjs.org/1.0.5/angular-resource.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services/API.js"></script>
+	<script src="js/services/Channel.js"></script>
+	<!-- // <script src="js/services/ChannelService.js"></script> -->
+	<script src="js/services/SwiftMessenger.js"></script>
 	<script src="js/controllers/ChannelCtrl.js"></script>
-	<script src="js/directives/message.js"></script>
+	<script src="js/controllers/ChannelSearchCtrl.js"></script>
+	<script src="js/controllers/PaginationCtrl.js"></script>
+	<script src="js/controllers/HomeCtrl.js"></script>
+	<!-- // <script src="js/directives/message.js"></script> -->
+	<!-- // <script src="js/directives/pagination.js"></script> -->
+	<!-- // <script src="js/directives/videolist.js"></script> -->
 </head>
 <body>
-	<!-- <span class="message-panel {{type}}" ng-class="{hidden: !text}" message>{{text}}</span> -->
-	<div id="wrapper" ng-controller="ChannelCtrl">
-	<message message-text="messageText" message-type="messageType"></message>
+	<div id="wrapper">
+		<message></message>
 		<div id="header">
-			<span class="title">Twitch TV Downloader</span>
-			<form id="search-form" ng-submit="submit()">
-				<input type="text" class="search-input" placeholder="Channel Name" name="channel-name" ng-model="newChannelName" />
+			<span class="title"><a href="{{root}}">Twitch TV Downloader</a></span>
+			<form id="search-form" ng-controller="ChannelSearchCtrl" ng-submit="submit()">
+				<input type="text" class="search-input" placeholder="Channel Title" name="channel-title" ng-model="channelTitle" />
 			</form>
 		</div>
-		<div id="main" class="container">
 
-			<div id="page-header">
-				<div ng-class="{hidden: !channel.videos.length}">
-					<span class="title">{{channel.name}}'s stream</span>
-					<span class="pagination top">
-						<span class="current-page">Page: {{channel.pagination.page}}</span>
-						<input type="button" class="previous-page" value="Previous" ng-click="changePage('previous')" />
-						<input type="button" class="next-page" value="Next" ng-click="changePage('next')" />
-					</span>
-				</div>
-			</div>
+		<div ng-view></div>
 
-			<div id="video-list" ng-class="{hidden: !channel.videos.length}">
-				<div class="video" ng-repeat="video in channel.videos">
-					<span class="image">
-						<img ng-src="{{video.image_url_medium}}" width="32" height="24" zoom="{}" />
-					</span>
-					<span class="title">
-						{{video.title}}
-					</span>
-					<span class="date">
-						{{video.created_on}}
-					</span>
-					<span class="download">
-						<a class="show-downloads" href="{{video.video_file_url}}" display-downloads>Download</a>
-						<div class="downloads hidden" ng-init="isVisible=false">
-							<div class="part" ng-repeat="part in video.parts">
-								<span class="file"><a href="{{part.video_file_url}}">Part {{$index + 1}}</a></span>
-							</div>
-						</div>
-					</span>
-				</div>
-			</div>
-
-			<div ng-class="{hidden: !channel.videos.length}">
-				<span class="pagination bottom">
-					<span class="current-page">Page: {{channel.pagination.page}}</span>
-					<input type="button" class="previous-page" value="Previous" ng-click="changePage('previous')" />
-					<input type="button" class="next-page" value="Next" ng-click="changePage('next')" />
-				</span>
-			</div>
-
-		</div>
 	</div>
+
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38409740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </body>
 </html>

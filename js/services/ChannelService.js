@@ -1,13 +1,9 @@
 "use strict";
 
-app.service("ChannelService", function($rootScope, $http) {
+TwitchDownload.service("ChannelService", function($rootScope, $http) {
 
 	var service = {
-		url: "http://fashionway.gr/t/fetch.php",
-		cache: {
-			streamUrl: "",
-			videos: {}
-		}
+		url: "http://fashionway.gr/t/fetch.php"
 	}
 
 	/*function _setCache(response) {
@@ -30,25 +26,12 @@ app.service("ChannelService", function($rootScope, $http) {
 					 */
 					get: function(data) {
 						return $http.post(service.url, {
-							"streamUrl": data.params.streamUrl,
+							"url": data.params.url,
 							"limit": data.params.limit,
 							"offset": data.params.offset
 						}).then(function(response) {
-							//_setCache(response);
 							return response.data;
 						});
-
-						/*req.success(function(data, status, headers, config) {
-							_setVideos(data);
-							debugger;
-							return {
-								data: data,
-								status: status,
-								headers: headers,
-								config: config
-							}
-							// params.success(data, status, headers, config);
-						});*/
 					},
 					put: function() {
 						//updates all videos

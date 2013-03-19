@@ -1,4 +1,4 @@
-app.directive("message", function() {
+TwitchDownload.directive("message", function() {
 	return {
 		restrict: "E",
 		replace: true,

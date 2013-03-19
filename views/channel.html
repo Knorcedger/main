@@ -1,0 +1,46 @@
+<div id="main" class="container">
+	<div id="page-header">
+		<!-- <div ng-class="{hidden: !channel.videos.length}"> -->
+		<div>
+			<span class="title">{{channelTitle}}'s stream</span>
+		</div>
+
+		<span class="pagination {{position}}" ng-controller="PaginationCtrl">
+			<span class="current-page">Page: {{page}}</span>
+			<a class="previous-page" href="/Main/#!/channel/{{channelTitle}}{{previousPage()}}">Previous Page</a>
+			<a class="next-page" href="/Main/#!/channel/{{channelTitle}}{{nextPage()}}">Next Page</a>
+		</span>
+
+	</div>
+
+	<!-- <div id="video-list" ng-class="{hidden: !channel.videos.length}"> -->
+	<div id="videolist">
+		<div class="video" ng-repeat="video in videos">
+			<span class="image">
+				<img ng-src="{{video.image_url_medium}}" width="32" height="24" zoom="{}" />
+			</span>
+			<span class="title">
+				{{video.title}}
+			</span>
+			<span class="date">
+				{{video.created_on}}
+			</span>
+			<span class="download">
+				<a class="show-downloads" href="{{video.video_file_url}}" display-downloads>Download</a>
+				<div class="downloads hidden" ng-init="isVisible=false">
+					<div class="part" ng-repeat="part in video.parts">
+						<span class="file"><a href="{{part.video_file_url}}">Part {{$index + 1}}</a></span>
+					</div>
+				</div>
+			</span>
+		</div>
+	</div>
+
+	<!-- <span class="pagination {{position}}" data-type="json">
+		<span class="current-page">Page: {{page}}</span>
+		<input type="text" ng-model="channelName" value="fire" />{{url}}
+		<input type="button" class="previous-page" value="Previous" ng-click="changePage('previous')" />
+		<input type="button" class="next-page" value="Next" ng-click="changePage('next')" />
+	</span> -->
+
+</div>

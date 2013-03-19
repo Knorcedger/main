@@ -1,0 +1,21 @@
+<div id="videolist">
+	<div class="video" ng-repeat="video in channel.videos">
+		<span class="image">
+			<img ng-src="{{video.image_url_medium}}" width="32" height="24" zoom="{}" />
+		</span>
+		<span class="title">
+			{{video.title}}
+		</span>
+		<span class="date">
+			{{video.created_on}}
+		</span>
+		<span class="download">
+			<a class="show-downloads" href="{{video.video_file_url}}" display-downloads>Download</a>
+			<div class="downloads hidden" ng-init="isVisible=false">
+				<div class="part" ng-repeat="part in video.parts">
+					<span class="file"><a href="{{part.video_file_url}}">Part {{$index + 1}}</a></span>
+				</div>
+			</div>
+		</span>
+	</div>
+</div>

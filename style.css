@@ -41,11 +41,12 @@ body {
 	height: 60px;
 }
 
-#header .title {
+#header .title a {
 	font-size: 20px;
 	text-shadow: 0px 2px 2px #444;
 	position: relative;
 	top: 18px;
+	color: white;
 }
 
 #header #search-form {
@@ -66,12 +67,20 @@ body {
 }
 
 #page-header {
-	margin: 30px 0 20px 20px;
+	margin: 30px 0 25px 20px;
 }
 
 #page-header .title {
 	font-size: 14px;
+}
 
+.simple-text {
+	display: block;
+	box-shadow: 0px 2px 2px #aaa;
+	padding: 10px;
+	margin: 50px 0 10px 0;
+	background: white;
+	border: 1px solid #bcbcbc;
 }
 
 .message-panel {
@@ -102,12 +111,12 @@ body {
 	border-color: rgb(122, 122, 122);
 }
 
-#video-list {
+#videolist {
 	font-size: 12px;
 	color: #555555;
 }
 
-#video-list .video {
+#videolist .video {
 	display: block;
 	box-shadow: 0px 2px 2px #aaa;
 	padding: 10px;
@@ -116,12 +125,12 @@ body {
 	border: 1px solid #bcbcbc;
 }
 
-#video-list .image {
+#videolist .image {
 	margin-right: 20px;
 	display: inline-block;
 }
 
-#video-list .title {
+#videolist .title {
 	width: 500px;
 	text-align: left;
 	display: inline-block;
@@ -130,17 +139,17 @@ body {
 	top: -10px;
 }
 
-#video-list .date {
+#videolist .date {
 	position: relative;
 	top: -10px;
 }
 
-#video-list .download {
+#videolist .download {
 	float: right;
 	position: relative;
 }
 
-#video-list .downloads {
+#videolist .downloads {
 	position: absolute;
 	top: 27px;
 	right: 0px;
@@ -153,7 +162,7 @@ body {
 	z-index: 10;
 }
 
-#video-list .downloads a {
+#videolist .downloads a {
 	color: rgb(79, 196, 255);
 }
 
@@ -163,6 +172,10 @@ body {
 
 .pagination.bottom {
 	margin-bottom: 20px;
+}
+
+.pagination a {
+	padding: 4px;
 }
 
 .next-page, .previous-page {

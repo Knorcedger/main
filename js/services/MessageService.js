@@ -2,7 +2,7 @@
 
 // this message object is not the same as the videos, since this is only one
 // and u cant add or delete it, just read it and update it, it is like a dingleton
-app.service("MessageService", function($rootScope) {
+TwitchDownload.service("MessageService", function($rootScope) {
 
 	var service = {
 		text: "",
