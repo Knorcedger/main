@@ -1,0 +1,84 @@
+<div>
+
+	<div ng-repeat="task in tasks">{{task}}</div>
+	
+	<div class="tile" ng-if="measurementData.length > 1">
+		<chart measurementData="measurementData"></chart>
+	</div>
+
+	<div class="tile">
+		<div class="row big">
+			<div class="label">{{'home.TREND' | translate}}</div>
+			<div class="field">
+				<span class="value">{{trend + ' ' + preferences.weightUnit.code}}</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.LAST' | translate}}</div>
+			<div class="field">
+				<span class="value">{{latest + ' ' + preferences.weightUnit.code}}</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.CHANGE_THIS_WEEK' | translate}}</div>
+			<div class="field">
+				<span class="value">
+					{{changeThisWeek + ' ' + preferences.weightUnit.code}}
+				</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.CHANGE_THIS_MONTH' | translate}}</div>
+			<div class="field">
+				<span class="value">
+					{{changeThisMonth + ' ' + preferences.weightUnit.code}}
+				</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">BMI</div>
+			<div class="field">
+				<span class="value">
+					{{bmi.toFixed(1)}}
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="tile">
+		<div class="row big">
+			<div class="label">{{'home.TOTAL_ENTRIES' | translate}}</div>
+			<div class="field">
+				<span class="value">{{totalMeasurements}}</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.LOWEST_WEIGHT' | translate}}</div>
+			<div class="field">
+				<span class="value">{{lowest.weight + ' ' + preferences.weightUnit.code}}</span>
+				<span class="sub">{{lowest.date | date:preferences.dateFormat}}</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.HIGHEST_WEIGHT' | translate}}</div>
+			<div class="field">
+				<span class="value">{{highest.weight + ' ' + preferences.weightUnit.code}}</span>
+				<span class="sub">{{highest.date | date:preferences.dateFormat}}</span>
+			</div>
+		</div>
+		
+		<div class="row big">
+			<div class="label">{{'home.TOTAL_CHANGE' | translate}}</div>
+			<div class="field">
+				<span class="value">{{total.weight + ' ' + preferences.weightUnit.code}}</span>
+				<span class="sub" ng-show="total.date">{{'home.SINCE' | translate}} {{total.date | date:preferences.dateFormat}}</span>
+			</div>
+		</div>
+	</div>
+</div>

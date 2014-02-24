@@ -1,0 +1,22 @@
+<div id="actionbar" ng-swipe-right="open = true"  ng-swipe-left="open = false">
+	<a href="javascript:void(0);" class="app-icon home" ng-show="!showButtons"  ng-click="open = !open">
+		<i class="fa fa-bars fa-2x"></i>
+	</a>
+	<div ng-show="showButtons">
+		<span class="button cancel">
+			<a href="javascript:void(0);" ng-click="cancel()">{{'actionbar.CANCEL' | translate}}</a>
+		</span>
+		<span class="separator">&nbsp;</span>
+		<span class="button done">
+			<a href="javascript:void(0);" ng-click="done()">{{'actionbar.DONE' | translate}}</a>
+		</span>
+	</div>
+</div>
+<div id="menu" class="animate-slide-left" ng-class="{'show': open}">
+	<ul class="menu-list">
+		<li ng-repeat="item in menu" ng-class="{'selected': currentRoute(item)}" ng-click="$parent.page = item.title; $parent.open = false;">
+			<a href="javascript:void(0);" ng-click="redirect(item.url)">{{item.title | translate}}</a>
+		</li>
+	</ul>
+	<div id="page-cover" ng-click="open = false"></div>
+</div>

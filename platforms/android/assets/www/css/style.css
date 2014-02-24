@@ -1,0 +1,499 @@
+/*
+Colors
+Blue: rgb(0, 204, 255)
+Green: rgb(0, 207, 125)
+Light Grey: rgb(208, 208, 208)
+Medium Grey: rgb(153, 153, 153)
+Dark Grey: rgb(103, 103, 103)
+Black: rgb(38, 38, 38)
+Source: http://designinstruct.com/visual-inspiration/charts_graphs_examples/
+Source 2: http://www.behance.net/gallery/The-Fragmented-World-of-Digital-Music-INFOGRAPHIC/1977319
+*/
+
+* {
+	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
+	color: rgb(83, 83, 83);
+	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+	-webkit-tap-highlight-color: rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+	outline: 0px;
+	/*-webkit-user-modify: read-write-plaintext-only;*/
+}
+
+html {
+/* 	font-size: 14px; */
+}
+
+html.open-menu {
+	overflow-y: hidden;
+}
+
+@media (max-width: 540px) {
+	html {
+/* 		font-size: 14px; */
+	}
+}
+
+@media (max-width: 480px) {
+	html {
+/* 		font-size: 12px; */
+	}
+}
+
+ol, ul {
+	list-style: none;
+}
+
+body {
+	background-color: #EEEEEE;
+	color: #bebebe;
+}
+
+a {
+	color: #91e842;
+	text-decoration: none;
+}
+
+a.link {
+	color: rgb(83, 83, 83);
+}
+
+.hidden {
+	display: none !important;
+}
+
+/********* ACTIONBAR **********/
+#actionbar {
+	background: rgb(75, 75, 75);
+	height: 45px;
+	z-index: 100;
+	position: fixed;
+	display: inline-block;
+	width: 100%;
+	top: 0;
+}
+
+#actionbar .app-icon {
+	width: 40px;
+	/* height: 100px; */
+}
+
+#actionbar .app-icon i {
+	color: white;
+	padding: 7px 10px 5px 10px;
+	font-size: 32px;
+	height: 7%;
+}
+
+#actionbar .app-icon.ng-click-active i {
+	color: #a4dbd9;
+}
+
+#actionbar .button {
+	display: inline-block;
+	width: 48%;
+	text-align: center;
+}
+
+#actionbar .button a {
+	text-decoration: none;
+	color: #aaa;
+	font-size: 20px;
+	width: 100%;
+	display: inline-block;
+	padding: 10px 0;
+}
+
+#actionbar .button a.ng-click-active {
+	background: #5F5F5F;
+}
+
+#actionbar .separator {
+	border-right: 1px solid #aaa;
+	height: 50%;
+	display: inline-block;
+}
+
+#menu {
+	background: #fff;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	height: 100%;
+	display: inline-block;
+	top: 0;
+}
+
+#menu .menu-list {
+	width: 70%;
+	display: inline-block;
+	padding-top: 45px;
+}
+
+#menu li {
+	border-bottom: 1px solid #efefef;
+}
+#menu li.ng-click-active {
+	background: #aaa;
+}
+#menu li.selected a {
+	font-weight: bold;
+}
+#menu li a {
+	color: #555;
+	margin: 0px; 
+	display: block; 
+	width: 100%; 
+	padding: 20px 0px 20px 10px;
+	font-size: 18px;
+}
+
+#page-cover {
+    width: 30%;
+    height: 100%;
+    background: rgb(131, 131, 131);
+    position: absolute;
+    display: inline-block;
+}
+
+#content {
+	padding-top: 45px;
+}
+
+#toast {
+    position: fixed;
+	
+    top: 70%;
+    background: black;
+    z-index: 100;
+    width: 70%;
+    border-radius: 30px;
+    padding: 4px 10px;
+    left: 15%;
+    background-color: rgb(80, 80, 80);
+    color: rgb(245, 245, 245);
+    opacity: 0.9;
+    min-height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.tile {
+	box-shadow: 0px 1px 1px #B9B9B9;
+	background: white;
+	border: 1px solid #E2E1E1;
+	padding: 5px 15px 5px 15px;
+	margin: 10px;
+	color: rgb(83, 83, 83);
+	font-weight: bold;
+}
+
+.tile .row {
+	height: 15px;
+	padding: 10px;
+}
+
+.tile .row.big {
+	height: 30px;
+}
+
+.tile .row .label {
+	float: left;
+}
+
+.tile .row .field {
+	float: right;
+}
+
+.tile .row .field .value {
+	display: block;
+	text-align: right;
+}
+
+.tile .row .field .sub {
+	display: inline-block;
+	color: #aaa;
+	font-style: italic;
+	font-size: 90%;
+	text-align: right;
+}
+
+.tile .options {
+	border-top: 15px solid transparent;
+	border-bottom: 0px solid transparent; 
+	
+	border-right: 15px solid #aaa;
+	float: right;
+	position: relative;
+	top: -9px;
+	right: -15px;
+}
+
+/* TABS */
+.tabs {
+	background-color: #E5E5E5;
+	box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.5);
+	height: 35px;
+}
+
+.tabs div,
+.button-bar div {
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	padding: 10px 0;
+	height: 15px;
+	width: 50%;
+	float: right;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.tabs div.ng-click-active {
+	background-color: rgb(153, 153, 153);
+}
+
+.tabs div.first,
+.button-bar div.first {
+	width: 50%;
+	float: left;
+	/* border-right: 1px #BDBDBD solid; */
+}
+
+.tabs div.active {
+	box-shadow: inset rgb(0, 204, 255) 0 -6px 0 0;
+}
+
+/* BUTTON-BAR */
+.button-bar {
+	background-color: rgb(75, 75, 75);
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	box-shadow: 0px -2px 5px 0px rgba(50, 50, 50, 0.5);
+}
+
+.button-bar div {
+	color: rgb(208, 208, 208);
+}
+
+.button-bar div.ng-click-active {
+	background-color: rgb(153, 153, 153);
+}
+
+/* LIST */
+.list {
+	background: #eee;
+	padding: 5px 20px 15px 20px;
+	/* height: 100%; */
+}
+
+.list li.header {
+	font-size: 85%;
+	font-weight: bold;
+	padding: 10px 0 2px 10px;
+	border-bottom: 2px #ccc solid;
+}
+
+.list li.row {
+	height: 20px;
+	padding: 18px 10px 15px 10px;
+}
+
+.list li.row:not(.last) {
+	border-bottom: 1px #ccc solid;
+}
+
+.list li.row .label {
+	float: left;
+}
+
+.list li.row .title {
+	
+}
+
+.list li.row .description {
+	font-size: 85%;
+}
+
+.list li.row .field {
+	float: right;
+	padding-right: 10px;
+}
+
+/* SIMPLE LIST */
+
+.simple-list {
+	height: 100%;
+}
+
+.simple-list li {
+	background: white;
+	opacity: 1;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.simple-list li.ng-click-active {
+	background: #ccc;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.select {
+	opacity: 0;
+}
+
+/* MODAL */
+.modal {
+	display: none;
+}
+
+/* INPUT DESIGN */
+.right {
+	display:inline-block;
+	height:7px;
+	border-left:1px solid #ccc;
+	border-right: 1px solid #ccc;
+	position:absolute;
+	margin-top:23px;
+	margin-left:-260px;
+	width:258px;
+	pointer-events: none;
+}
+
+.input {
+	display:inline-block;
+	height:30px;
+	font-size:16px;
+	width: 200px;
+	border:1px solid  #ccc;
+	border-width:0px 0px 1px 0px;
+	padding:0px 5px;  
+	outline:none;
+}
+
+.input:hover, .input:focus,
+.input:hover + .right,
+.input:focus + .right {
+    border-color:#4ab5d9;
+}
+
+/* triangle */
+span.holo > input[type='text'], span.holo > input[type='date'] {
+    border:none;
+    outline:none;
+    padding:0px;
+	-webkit-appearance: initial;
+    min-width: 150px;
+}
+span.holo > select {
+    border:none;
+    outline:none;
+    padding:0px;
+    background: white;
+    -webkit-appearance: initial;
+    min-width: 150px;
+}
+span.holo > select.dark {
+	background-color: #eeeeee;
+}
+span.holo {
+    border-bottom: solid 1px #ccc;
+    position:relative;
+    overflow:hidden;
+    padding: 2px 0px;
+    padding-right:10px;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+span.holo:after,
+span.holo::after {
+    content:' ';
+    overflow:hidden;
+    width:10px;
+    height:10px;
+    display:inline-block;
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    border:solid 5px transparent;
+    border-bottom-color:#ccc;
+    border-right-color:#ccc;
+}
+
+/* ANIMATIONS */
+.animate-slide-left {
+	transition: all ease 0.5s;
+	position: absolute;
+	-webkit-transform: translateX(-100%);
+/* 	left: -100%; */
+}
+
+.animate-slide-left.show {
+/* 	left: 0; */
+	transform: rotate(7deg);
+	-webkit-transform: translateX(0);
+/* 	transition: all ease 0.5s; */
+/* 	transform: translateX(600px); */
+}
+
+.animate-fade {
+	-webkit-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+	display: none;
+	opacity: 0;
+}
+
+.animate-fade.show {
+	opacity: 0.5;
+	display: block;
+}
+
+/* view animate */
+.view-animate.ng-enter, .view-animate.ng-leave {
+	-webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	display: block;
+	width: 100%;
+	position:absolute;
+	left:0;
+	right:0;
+}
+ 
+.view-animate.ng-enter {
+	left: 100%;
+}
+.view-animate.ng-enter.ng-enter-active {
+	left: 0;
+}
+.view-animate.ng-leave.ng-leave-active {
+	left: -100%;
+}
+
+.animate-show {
+	position: absolute;
+	transition: all ease 0.5s;
+	left: 0;
+	display: block;
+	right: 0;
+}
+ 
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+	display: block !important;
+}
+
+.animate-show.ng-hide-remove {
+	transition-delay: 0.5s;
+}
+ 
+.animate-show.ng-hide {
+	left: -100%;
+	right: 100%;
+}

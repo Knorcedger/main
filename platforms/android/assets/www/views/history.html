@@ -1,0 +1,17 @@
+<div id="history">
+	<div class="tile" ng-repeat="measurement in measurementData track by $index" ng-click="openModal($index)">
+		<div class="row">
+			<div class="label">{{measurement.date | date:preferences.dateFormat}}</div>
+			<div class="field">
+				<span class="value">{{measurement.weight + ' ' + preferences.weightUnit.code}}</span>
+			</div>
+		</div>
+		<span class="options"></span>
+	</div>
+	<modal>
+		<ul class="simple-list">
+<!-- 			<li>Edit</li> -->
+			<li ng-click="delete()">Delete</li>
+		</ul>
+	</modal>
+</div>

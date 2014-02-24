@@ -1,0 +1,64 @@
+{
+	"actionbar": {
+		"DONE": "Done",
+		"CANCEL": "Cancel"
+	},
+	"menu": {
+		"OVERVIEW": "Overview",
+		"ADD": "Add",
+		"HISTORY": "History",
+		"SETTINGS": "Settings"
+	},
+	"home": {
+		"TREND": "Trend",
+		"LAST": "Last record",
+		"CHANGE_THIS_WEEK": "Last 7 days",
+		"CHANGE_THIS_MONTH": "Change this month",
+		"TOTAL_ENTRIES": "Total records",
+		"LOWEST_WEIGHT": "Lowest weight",
+		"HIGHEST_WEIGHT": "Highest weight",
+		"TOTAL_CHANGE": "Total change",
+		"SINCE": "Since"
+	},
+	"input": {
+		"DATE": "Date",
+		"WEIGHT": "Weight",
+		"ADDED": "Measurement Added"
+	},
+	"history": {
+		
+	},
+	"settings": {
+		"GENERAL_SETTINGS": "General Settings",
+		"WEIGHT_UNIT": "Weight Unit",
+		"HEIGHT_UNIT": "Height Unit",
+		"DATE_FORMAT": "Date Format",
+		"USER_DETAILS": "User Details",
+		"HEIGHT": "Your Height",
+		"SYNC": "Data sync",
+		"EMAIL": "Email",
+		"NOT_LOGGEDIN": "Not logged in",
+		"LOGOUT_SUCCESS": "You have successfully logged out"
+	},
+	"sync": {
+		"REGISTER": "Register",
+		"LOGIN": "Login",
+		"EMAIL": "Email",
+		"PASSWORD": "Password",
+		"CANCEL": "Cancel",
+		"REGISTER_EXPLANATION": "You can register with the form below to backup your data and sync it with other devices",
+		"REGISTER_SUCCESS": "You have successfully registered",
+		"REGISTER_ERROR": "Something went wrong, please try again",
+		"LOGIN_SUCCESS": "You have successfully logged in",
+		"LOGIN_ERROR": "Something went wrong, please try again",
+		"error_codes": {
+			"login": {
+				"INVALID_USER": "The specified user does not exist",
+				"INVALID_PASSWORD": "The specified password is incorrect"
+			},
+			"register": {
+				"INVALID_PASSWORD": "Invalid password specified"
+			}
+		}
+	}
+}

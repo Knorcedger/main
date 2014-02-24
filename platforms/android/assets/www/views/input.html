@@ -1,0 +1,22 @@
+<div id="input">
+	<div class="tile">
+		<div class="row" ng-hide="hideDate">
+			<span class="label">{{'input.DATE' | translate}}</span>
+			<span class="field">
+				<span class="holo">
+					<input type="date" name="date" ng-model="date" />
+				</span>
+			</span>
+		</div>
+		
+		<div class="row">
+			<span class="label">{{'input.WEIGHT' | translate}}</span>
+			<span class="field">
+				<span class="holo">
+					<select name="weight" ng-model="weight" ng-options="weight.key as weight.value for weight in availableWeights">
+					</select>
+				</span>
+			</span>
+		</div>
+	</div>
+</div>

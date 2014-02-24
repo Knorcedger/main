@@ -1,0 +1,62 @@
+<div id="settings">
+	<ul class="list">
+		<li class="header">{{('settings.GENERAL_SETTINGS' | translate).toUpperCase()}}</li>
+		<li class="row" open-select="weightUnit">
+			<div class="label">
+				<div class="title">{{'settings.WEIGHT_UNIT' | translate}}</div>
+			</div>
+			<div class="field">
+				{{preferences.weightUnit.title}}
+			</div>
+			<select id="weightUnit" class="select" ng-model="weightUnit" ng-options="item.title for item in availablePreferences.weightUnits">
+			</select>
+		</li>
+		<li class="row" open-select="heightUnit">
+			<div class="label">
+				<div class="title">{{'settings.HEIGHT_UNIT' | translate}}</div>
+			</div>
+			<div class="field">
+				{{preferences.heightUnit.title}}
+			</div>
+			<select id="heightUnit" class="select" ng-model="heightUnit" ng-options="item.title for item in availablePreferences.heightUnits">
+			</select>
+		</li>
+		<li class="row last" open-select="dateFormat">
+			<div class="label">
+				<div class="title">{{'settings.DATE_FORMAT' | translate}}</div>
+			</div>
+			<div class="field">
+				{{preferences.dateFormat}}
+			</div>
+			<select id="dateFormat" class="select" ng-model="dateFormat" ng-options="item for item in availablePreferences.dateFormats">
+			</select>
+		</li>
+		<li class="header">{{('settings.USER_DETAILS' | translate).toUpperCase()}}</li>
+		<li class="row last">
+			<div class="label">
+				<div class="title">{{'settings.HEIGHT' | translate}}</div>
+			</div>
+			<div class="field">
+				<span class="holo">
+					<select class="dark" name="height" ng-model="height" ng-options="height.label as height.field for height in availableHeights">
+					</select>
+				</span>
+			</div>
+		</li>
+		<li class="header">{{('settings.SYNC' | translate).toUpperCase()}}</li>
+		<li class="row last">
+			<div class="label">
+				<div class="title">{{'settings.EMAIL' | translate}}</div>
+			</div>
+			<div class="field">
+				<a class="link" href="#!/sync" ng-show="!activeUser.email">{{'settings.NOT_LOGGEDIN' | translate}}</a>
+				<span publish-event-type="click" publish-event-name="modal.open" publish-data="">{{activeUser.email}}</span>
+			</div>
+			<modal>
+				<ul class="simple-list">
+					<li ng-click="logout()">Logout</li>
+				</ul>
+			</modal>
+		</li>
+	</ul>
+</div>

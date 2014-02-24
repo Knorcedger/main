@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.enjivo.witer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Witer</name>
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="App">
+        <param name="android-package" value="org.apache.cordova.App" />
+    </feature>
+    <name>Witer</name>
+    <description>
+        A simple weight manager
+    </description>
+    <preference name="fullscreen" value="false" />
+    <preference name="orientation" value="portrait" />
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <name>Witer</name>
+    <description>
+        A simple weight manager
+    </description>
+    <author email="info@enjivo.com" href="http://enjivo.com">
+        Enjivo
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="true" />
+</widget>

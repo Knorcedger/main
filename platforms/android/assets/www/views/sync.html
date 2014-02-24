@@ -1,0 +1,45 @@
+<div>
+
+	<div class="tabs">
+		<div class="first" ng-class="{'active': mode === 'register'}" ng-click="mode = 'register'">{{('sync.REGISTER' | translate).toUpperCase()}}</div>
+		<div ng-class="{'active': mode === 'login'}" ng-click="mode = 'login'">{{('sync.LOGIN' | translate).toUpperCase()}}</div>
+	</div>
+
+	<div class="tile animate-show" ng-show="mode === 'register'">
+		<div class="row big">{{'sync.REGISTER_EXPLANATION' | translate}}</div>
+		<div class="row big">
+			<div class="label">{{'sync.EMAIL' | translate}}</div>
+			<div class="field">
+				<span class="value"><input type="text" class="input" ng-model="registerEmail" /></span>
+			</div>
+		</div>
+		<div class="row big">
+			<div class="label">{{'sync.PASSWORD' | translate}}</div>
+			<div class="field">
+				<span class="value"><input type="password" class="input" ng-model="registerPassword" /></span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="tile animate-show" ng-show="mode === 'login'">
+		<div class="row big">
+			<div class="label">{{'sync.EMAIL' | translate}}</div>
+			<div class="field">
+				<span class="value"><input type="text" class="input" ng-model="loginEmail" /></span>
+			</div>
+		</div>
+		<div class="row big">
+			<div class="label">{{'sync.PASSWORD' | translate}}</div>
+			<div class="field">
+				<span class="value"><input type="password" class="input" ng-model="loginPassword" /></span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="button-bar">
+		<div class="first" ng-click="cancel()">{{('sync.CANCEL' | translate).toUpperCase()}}</div>
+		<div ng-click="register()" ng-show="mode === 'register'">{{('sync.REGISTER' | translate).toUpperCase()}}</div>
+		<div ng-click="login()" ng-show="mode === 'login'">{{('sync.LOGIN' | translate).toUpperCase()}}</div>
+	</div>
+
+</div>
