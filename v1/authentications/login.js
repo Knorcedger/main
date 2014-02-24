@@ -51,37 +51,6 @@ exports.index = function(req, res) {
 	var session = new Session();
 	var user = new User();
 	
-	// user found
-	req.on('User.findOne.success', function(data) {
-		req.data.response.data = data.toObject();
-		// check if a session for this user already exists
-		session.findOne(req, {
-			userId: data._id
-		});
-	});
-	
-	// user not found, wrong username or password
-	req.on('User.findOne.error.notFound', function(data) {
-		errorHandler.error(req, res, 'WRONG_DATA');
-	});
-	
-	// session exists, send response
-	req.on('Session.findOne.success', function(data) {
-		sendResponse(data._id);
-	});
-	
-	// session doesnt exist, create one
-	req.on('Session.findOne.error.notFound', function() {
-		session.add(req, {
-			userId: user._id
-		});
-	});
-	
-	// session created, send response
-	req.on('Session.add.success', function(data) {
-		sendResponse(data._id);
-	});
-	
 	// check if the user exists in db
 	user.findOne(req, {
 		username: requestData.username,
@@ -90,8 +59,9 @@ exports.index = function(req, res) {
 		if (result !== 'notFound') {
 			// we found the user, save him and lets find if a session already exists
 			req.data.response.data = result.toObject();
+			var user = req.data.response.data;
 			session.findOne(req, {
-				userId: result._id
+				userId: user._id
 			}).then(function(result) {
 				if (result === 'notFound') {
 					// session notFOund, so lets create a new one

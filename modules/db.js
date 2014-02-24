@@ -13,7 +13,7 @@ exports.init = function(app, mongoUrl) {
 };
 
 // executes a query
-exports.exec = function(req, query, schema) {
+exports.exec = function(req, query) {
 	GLOBAL.log('db.exec');
 // 	var Model = require('mongoose').model(schema);
 

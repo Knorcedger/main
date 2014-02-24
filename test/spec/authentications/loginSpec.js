@@ -166,5 +166,30 @@ describe('/authentications/login Service', function() {
 				var response = expect(callback).toBeErrorful(callback, 'WRONG_DATA');
 			});
 		});
+		
+		it('should login when valid data are sent, and respond with the same token we received earlier', function() {
+			var callback = jasmine.createSpy();
+			var config = {
+				data: {
+					username: localStorage.getItem('username'),
+					password: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
+					secret: APIKEY
+				},
+				type: 'POST',
+				url: '/v1/authentications/login'
+			};
+			request(config, callback);
+			waitsFor(function() {
+				if (callback.callCount > 0) {
+					return true;
+				}
+			});
+			runs(function() {
+				var response = expect(callback).toBeSuccessful(callback);
+				expect(response.data).toBeUser();
+				expect(response.data.token).toBeId();
+				expect(response.data.token).toBe(localStorage.getItem('token'));
+			});
+		});
 	});
 });
