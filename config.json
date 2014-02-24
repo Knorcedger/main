@@ -1,0 +1,11 @@
+{
+	"port": 2000,
+	"mongoUrl": "mongodb://witer:witermongolabuser@ds029939.mongolab.com:29939/heroku_app21675848",
+	"version": "0.0.1",
+	"userTypes": ["admin", "user"],
+	"defaultUserType": "user",
+	"session": {
+		"timeout": 600000000000
+	},
+	"apikey": "1234"
+}
