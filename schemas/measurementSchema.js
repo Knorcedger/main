@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var db = require('../modules/db');
 var Schema   = mongoose.Schema;
-require("../models/User");
+var schemaExtender = require('../modules/schemaExtender');
 
 var measurementSchema = mongoose.Schema({
 	data: {},
@@ -22,20 +22,15 @@ measurementSchema.methods.getFilters = function() {
 };
 
 measurementSchema.methods.add = function(req, saveParams) {
-	GLOBAL.log('Measurement.add');
-	
-	var Measurement = mongoose.model('Measurement', measurementSchema);
-	var measurement = new Measurement(saveParams);
+	return schemaExtender.add(req, measurementSchema, 'Measurement', saveParams);
+}
 
-	db.save(req, measurement, 'Measurement.add');
+measurementSchema.methods.update = function(req, instance) {
+	return schemaExtender.update(req, measurementSchema, 'Measurement', instance);
 }
 
 measurementSchema.methods.findOne = function(req, queryParams) {
-	GLOBAL.log('Measurement.findOne', queryParams);
-	
-	var Measurement = mongoose.model('Measurement', userSchema);
-	var query = Measurement.findOne(queryParams);
-	db.exec(req, query, 'Measurement.findOne');
+	return schemaExtender.findOne(req, measurementSchema, 'Measurement', queryParams);
 }
 
 mongoose.model('Measurement', measurementSchema);

@@ -40,7 +40,7 @@ beforeEach(function() {
 			var value = this.actual;
 			expect(value).toHaveTheseAttributes(['_id', 'data']);
 			expect(value._id).toBeId();
-// 			expect(value.data).toBeInt();
+			expect(value.data).toBeObject();
 
 			return true;
 		},

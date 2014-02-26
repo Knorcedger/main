@@ -2,17 +2,17 @@
  * Adds a new user in the database.
  */
 
-require("../../schemas/userSchema");
-var User = require('mongoose').model('User');
+require("../../schemas/measurementSchema");
+var Measurement = require('mongoose').model('Measurement');
+
 var responseBuilder = require('../../modules/responseBuilder');
-var crypto = require("crypto");
 var validator = require('validator');
 var validationsRunner = require('../../modules/validationsRunner');
 var permissioner = require("../../modules/permissioner");
 var errorHandler = require('../../modules/errorHandler');
 
 exports.init = function(app) {
-	app.post('/v1/authentications/register', [
+	app.post('/v1/measurements/update', [
 		permissioner(['null']),
 		this.sanitize,
 		this.validate
@@ -32,20 +32,7 @@ exports.validate = function(req, res, next) {
 	var validations = {
 		username: {
 			INVALID_LENGTH: validator.isLength(requestData.username, 1),
-			INVALID_CHARACTER: validator.matches(requestData.username, /^[a-z0-9_-]*$/i),
-			ALREADY_EXISTS: function(req, resolve) {
-				var user = new User();
-
-				user.findOne(req, {
-					username: requestData.username
-				}).then(function(result) {
-					if (result === 'notFound') {
-						resolve(true);
-					} else {
-						resolve(false);
-					}
-				});
-			}
+			INVALID_CHARACTER: validator.matches(requestData.username, /^[a-z0-9_-]*$/i)
 		},
 		password: {
 			INVALID_LENGTH: validator.isLength(requestData.password, 64, 64)
@@ -56,16 +43,42 @@ exports.validate = function(req, res, next) {
 };
 
 exports.index = function(req, res) {
-	GLOBAL.log('authentications.register');
+	GLOBAL.log('authentications.login');
 	var requestData = req.data.requestData;
+	var session = new Session();
 	var user = new User();
 	
-	// add the new user
-	user.add(req, {
+	// check if the user exists in db
+	user.findOne(req, {
 		username: requestData.username,
 		password: crypto.createHash('sha256').update(requestData.password).digest("hex")
 	}).then(function(result) {
-		req.data.response.data = result;
-		responseBuilder.send(req, res);
+		if (result !== 'notFound') {
+			// we found the user, save him and lets find if a session already exists
+			req.data.response.data = result.toObject();
+			var user = req.data.response.data;
+			session.findOne(req, {
+				userId: user._id
+			}).then(function(result) {
+				if (result === 'notFound') {
+					// session notFOund, so lets create a new one
+					session.add(req, {
+						userId: user._id
+					}).then(function(result) {
+						sendResponse(result._id);
+					});
+				} else {
+					// session found, send token
+					sendResponse(result._id);
+				}
+			});
+		} else {
+			errorHandler.error(req, res, 'WRONG_DATA');
+		}
 	});
+	
+	function sendResponse(token) {
+		req.data.response.data.token = token;
+		responseBuilder.send(req, res);
+	}
 };

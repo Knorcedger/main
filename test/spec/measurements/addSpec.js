@@ -1,10 +1,13 @@
 describe('/measurements/add Service', function() {
 
-	it('should add a measurement when valid data are sent', function() {
+	it('should add a measurement for a user when valid data are sent', function() {
 		var callback = jasmine.createSpy();
 		var config = {
 			data: {
-				data: {},
+				data: {
+					fire: 3
+				},
+				userId: localStorage.getItem('userId'),
 				token: localStorage.getItem('token'),
 				secret: APIKEY
 			},
@@ -23,146 +26,121 @@ describe('/measurements/add Service', function() {
 		});
 	});
 
-// 	describe('Parameter Validations', function() {
-// 		describe('Username Validations', function() {
+	describe('Parameter Validations', function() {
+		describe('UserId Validations', function() {
 			
-// 			it('should return INVALID_LENGTH error when username is empty', function() {
-// 				var callback = jasmine.createSpy();
-// 				var config = {
-// 					data: {
-// 						username: '',
-// 						password: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
-// 						secret: APIKEY
-// 					},
-// 					type: 'POST',
-// 					url: '/v1/authentications/login'
-// 				};
-// 				request(config, callback);
-// 				waitsFor(function() {
-// 					if (callback.callCount > 0) {
-// 						return true;
-// 					}
-// 				});
-// 				runs(function() {
-// 					var response = expect(callback).toBeErrorful(callback, 'username.INVALID_LENGTH');
-// 				});
-// 			});
-
-// 			it('should return INVALID_CHARACTER error when username is has "', function() {
-// 				var callback = jasmine.createSpy();
-// 				var config = {
-// 					data: {
-// 						username: 'sdsd"fsd',
-// 						password: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
-// 						secret: APIKEY
-// 					},
-// 					type: 'POST',
-// 					url: '/v1/authentications/login'
-// 				};
-// 				request(config, callback);
-// 				waitsFor(function() {
-// 					if (callback.callCount > 0) {
-// 						return true;
-// 					}
-// 				});
-// 				runs(function() {
-// 					var response = expect(callback).toBeErrorful(callback, 'username.INVALID_CHARACTER');
-// 				});
-// 			});
-// 		});
-		
-// 		describe('Password Validations', function() {
+			it('should return userId.INVALID_ID when no userId is sent', function() {
+				var callback = jasmine.createSpy();
+				var config = {
+					data: {
+						data: {},
+						token: localStorage.getItem('token'),
+						secret: APIKEY
+					},
+					type: 'POST',
+					url: '/v1/measurements/add'
+				};
+				request(config, callback);
+				waitsFor(function() {
+					if (callback.callCount > 0) {
+						return true;
+					}
+				});
+				runs(function() {
+					var response = expect(callback).toBeErrorful(callback, 'userId.INVALID_ID');
+				});
+			});
 			
-// 			it('should return INVALID_LENGTH error when password is empty', function() {
-// 				var callback = jasmine.createSpy();
-// 				var config = {
-// 					data: {
-// 						username: 'test',
-// 						password: '',
-// 						secret: APIKEY
-// 					},
-// 					type: 'POST',
-// 					url: '/v1/authentications/login'
-// 				};
-// 				request(config, callback);
-// 				waitsFor(function() {
-// 					if (callback.callCount > 0) {
-// 						return true;
-// 					}
-// 				});
-// 				runs(function() {
-// 					var response = expect(callback).toBeErrorful(callback, 'password.INVALID_LENGTH');
-// 				});
-// 			});
-
-// 			it('should return INVALID_CHARACTER error when password length is 10', function() {
-// 				var callback = jasmine.createSpy();
-// 				var config = {
-// 					data: {
-// 						username: 'test',
-// 						password: '03ac674216',
-// 						secret: APIKEY
-// 					},
-// 					type: 'POST',
-// 					url: '/v1/authentications/login'
-// 				};
-// 				request(config, callback);
-// 				waitsFor(function() {
-// 					if (callback.callCount > 0) {
-// 						return true;
-// 					}
-// 				});
-// 				runs(function() {
-// 					var response = expect(callback).toBeErrorful(callback, 'password.INVALID_LENGTH');
-// 				});
-// 			});
-// 		});
-// 	});
+			it('should return userId.INVALID_ID when a bad userId is sent', function() {
+				var callback = jasmine.createSpy();
+				var config = {
+					data: {
+						data: {},
+						userId: '530c185ec74',
+						token: localStorage.getItem('token'),
+						secret: APIKEY
+					},
+					type: 'POST',
+					url: '/v1/measurements/add'
+				};
+				request(config, callback);
+				waitsFor(function() {
+					if (callback.callCount > 0) {
+						return true;
+					}
+				});
+				runs(function() {
+					var response = expect(callback).toBeErrorful(callback, 'userId.INVALID_ID');
+				});
+			});
+			
+			it('should return userId.INVALID_ID when a not existing userId is sent', function() {
+				var callback = jasmine.createSpy();
+				var config = {
+					data: {
+						data: {},
+						userId: '530c185ec999999999999999',
+						token: localStorage.getItem('token'),
+						secret: APIKEY
+					},
+					type: 'POST',
+					url: '/v1/measurements/add'
+				};
+				request(config, callback);
+				waitsFor(function() {
+					if (callback.callCount > 0) {
+						return true;
+					}
+				});
+				runs(function() {
+					var response = expect(callback).toBeErrorful(callback, 'userId.NOT_EXIST');
+				});
+			});
+		});
+	});
 	
-// 	describe('More tests', function() {
-			
-// 		it('should return WRONG_DATA error when username does not exist', function() {
-// 			var callback = jasmine.createSpy();
-// 			var config = {
-// 				data: {
-// 					username: 'kolokithoopoulos',
-// 					password: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
-// 					secret: APIKEY
-// 				},
-// 				type: 'POST',
-// 				url: '/v1/authentications/login'
-// 			};
-// 			request(config, callback);
-// 			waitsFor(function() {
-// 				if (callback.callCount > 0) {
-// 					return true;
-// 				}
-// 			});
-// 			runs(function() {
-// 				var response = expect(callback).toBeErrorful(callback, 'WRONG_DATA');
-// 			});
-// 		});
+	describe('Permissions test', function() {
+		it('should return INVALID_SESSION error when no token is sent', function() {
+			var callback = jasmine.createSpy();
+			var config = {
+				data: {
+					data: {},
+					secret: APIKEY
+				},
+				type: 'POST',
+				url: '/v1/measurements/add'
+			};
+			request(config, callback);
+			waitsFor(function() {
+				if (callback.callCount > 0) {
+					return true;
+				}
+			});
+			runs(function() {
+				var response = expect(callback).toBeErrorful(callback, 'INVALID_SESSION');
+			});
+		});
 		
-// 		it('should return WRONG_DATA error when the password is wrong', function() {
-// 			var callback = jasmine.createSpy();
-// 			var config = {
-// 				data: {
-// 					username: localStorage.getItem('username'),
-// 					password: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f!',
-// 					secret: APIKEY
-// 				},
-// 				type: 'POST',
-// 				url: '/v1/authentications/login'
-// 			};
-// 			request(config, callback);
-// 			waitsFor(function() {
-// 				if (callback.callCount > 0) {
-// 					return true;
-// 				}
-// 			});
-// 			runs(function() {
-// 				var response = expect(callback).toBeErrorful(callback, 'WRONG_DATA');
-// 			});
-// 		});
-// 	});
+		it('should return INVALID_SESSION error when invalid token is sent', function() {
+			var callback = jasmine.createSpy();
+			var config = {
+				data: {
+					data: {},
+					token: 'dfsdfsdfsd',
+					secret: APIKEY
+				},
+				type: 'POST',
+				url: '/v1/measurements/add'
+			};
+			request(config, callback);
+			waitsFor(function() {
+				if (callback.callCount > 0) {
+					return true;
+				}
+			});
+			runs(function() {
+				var response = expect(callback).toBeErrorful(callback, 'INVALID_SESSION');
+			});
+		});
+	});
 });

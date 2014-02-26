@@ -86,6 +86,14 @@ beforeEach(function() {
 
 			return result;
 		},
+		toBeObject: function() {
+			var result = true,
+				value = this.actual;
+
+			result = _.isObject(value);
+
+			return result;
+		},
 		toHaveMaxLengthOf: function(maxLength) {
 			var result = true,
 				value = this.actual;

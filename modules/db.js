@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var eventPublisher = require('./eventPublisher');
 var Promise = require('es6-promise').Promise;
 
 // initializes the db connection

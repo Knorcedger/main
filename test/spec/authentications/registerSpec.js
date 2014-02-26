@@ -22,6 +22,7 @@ describe('/authentications/register Service', function() {
 		runs(function() {
 			var response = expect(callback).toBeSuccessful(callback);
 			expect(response.data).toBeUser();
+			localStorage.setItem('userId', response.data._id);
 		});
 	});
 

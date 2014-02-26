@@ -6,7 +6,8 @@ var express = require('express'),
 	responseBuilder = require('./modules/responseBuilder'),
 	apiAccessVerifier = require('./modules/apiAccessVerifier'),
 	errorHandler = require('./modules/errorHandler'),
-	nconf = require('nconf');
+	nconf = require('nconf'),
+	customValidations = require('./modules/customValidations')
 
 /**
  * On application start
@@ -37,8 +38,10 @@ app.configure(function() {
 
 logger.init();
 
-// initializa the db connection
+// initialize the db connection
 db.init(app, nconf.get('mongoUrl'));
+// setup the custom validations
+customValidations();
 
 /**
  * Application routes and middleware
@@ -58,6 +61,7 @@ app.all('*', apiAccessVerifier);
 require('./v1/authentications/register.js').init(app);
 require('./v1/authentications/login.js').init(app);
 require('./v1/measurements/add.js').init(app);
+require('./v1/users/measurements.js').init(app);
 // require('./v1/authentications/register.js').init(app);
 // require('./v1/authentications/logout.js').init(app);
 // require('./v1/tags/edit.js').init(app);
@@ -103,5 +107,5 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 process.on('uncaughtException', function (err) {
-  console.log(err);
+	console.log('uncaughtException', err);
 });

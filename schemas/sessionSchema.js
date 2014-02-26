@@ -3,7 +3,6 @@ var nconf = require('nconf');
 var db = require('../modules/db');
 var Promise = require('es6-promise').Promise;
 var Schema = mongoose.Schema;
-require("../models/User");
 var schemaExtender = require('../modules/schemaExtender');
 
 var sessionSchema = mongoose.Schema({

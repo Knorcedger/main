@@ -2,33 +2,50 @@
 Retrieves the session declared by the token parameter. Then retrieves the user by the userId
 written on session document and attaches it to the req.data.parsedData
  */
-var mongoose = require( 'mongoose' );
-// var User = require('../models/User');
-// var Session = require('../models/Session');
-var eventPublisher = require('../modules/eventPublisher');
+require("../schemas/sessionSchema");
+var Session = require('mongoose').model('Session');
+require("../schemas/userSchema");
+var User = require('mongoose').model('User');
 
-exports.authenticate = function(req, res, next) {
+var Promise = require('es6-promise').Promise;
+var errorHandler = require('./errorHandler');
+var validator = require('validator');
 
-	req.on("User.findById.authenticator.success", function(data) {
-		// user that corresponds to the session is retrieved so we load the active user and move to the next middleware
-		req.data.activeUser = data;
-		next();
+module.exports = function(req, res) {
+	GLOBAL.log('authenticator');
+	
+	var session = new Session();
+	var user = new User();
+
+	return new Promise(function(resolve, reject) {
+		
+		// check if the token is a valid id
+		if (validator.isId(req.data.requestData.token)) {
+			// search for this session id
+			session.findById(req, req.data.requestData.token)
+			.then(function(result) {
+				// if session found
+				if (result !== 'notFound') {
+					// search for this user
+					user.findById(req, result.userId)
+					.then(function(result) {
+						if (result !== 'notFound') {
+							req.data.activeUser = result;
+							resolve();
+						} else {
+							// this error should never happen, since we never delete sessions
+							errorHandler.error(req, res, 'USER_NOT_FOUND');
+							reject('USER_NOT_FOUND');
+						}
+					});
+				} else {
+					errorHandler.error(req, res, 'INVALID_SESSION');
+					reject('INVALID_SESSION');
+				}
+			});
+		} else {
+			errorHandler.error(req, res, 'INVALID_SESSION');
+			reject('INVALID_SESSION');
+		}
 	});
-
-	req.on("User.findById.error.notFound", function(data) {
-		// user that corresponds to the session is not found		
-		req.emit('request.error', 1004);
-	});
-
-	req.on("Session.findById.success", function(data) {
-		//session is retrieved or not  - if retrieved I make a query to get the user
-		User.findById(req, data.userId, 'authenticator');
-	});
-
-	req.on("Session.findById.error.notFound", function(data) {
-		// if session is not found then error is returned
-		req.emit('request.error', 1003);
-	});
-
-	Session.findById(req, req.data.requestData.token);
 };
