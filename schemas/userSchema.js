@@ -28,12 +28,12 @@ userSchema.methods.getFilters = function() {
 	};
 };
 
-userSchema.methods.add = function(req, saveParams) {
-	return schemaExtender.add(req, userSchema, 'User', saveParams);
+userSchema.methods.create = function(req, save) {
+	return schemaExtender.create(req, userSchema, 'User', save);
 }
 
-userSchema.methods.findOne = function(req, queryParams) {
-	return schemaExtender.findOne(req, userSchema, 'User', queryParams);
+userSchema.methods.findOne = function(req, query) {
+	return schemaExtender.findOne(req, userSchema, 'User', query);
 }
 
 userSchema.methods.findById = function(req, id) {

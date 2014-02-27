@@ -61,11 +61,19 @@ exports.index = function(req, res) {
 	var user = new User();
 	
 	// add the new user
-	user.add(req, {
+// 	user.add(req, {
+// 		username: requestData.username,
+// 		password: crypto.createHash('sha256').update(requestData.password).digest("hex")
+// 	}).then(function(result) {
+// 		req.data.response.data = result;
+// 		responseBuilder.send(req, res);
+// 	});
+	
+	user.create(req, {
 		username: requestData.username,
 		password: crypto.createHash('sha256').update(requestData.password).digest("hex")
 	}).then(function(result) {
 		req.data.response.data = result;
 		responseBuilder.send(req, res);
-	});
+	})
 };

@@ -15,47 +15,18 @@ var errorHandler = require('../../modules/errorHandler');
 
 exports.init = function(app) {
 	app.post('/v1/measurements/add', [
-		permissioner(['!null']),
-		this.sanitize,
-		this.validate
+		permissioner(['!null'])
 	], this.index);
-};
-
-exports.sanitize = function(req, res, next) {	
-	next();
-}
-
-exports.validate = function(req, res, next) {
-	var requestData = req.data.requestData;
-	
-	var validations = {
-		userId: {
-			INVALID_ID: validator.isId(requestData.userId),
-			NOT_EXIST: function(req, resolve) {
-				var user = new User();
-
-				user.findById(req, requestData.userId)
-				.then(function(result) {
-					if (result === 'notFound') {
-						resolve(false);
-					} else {
-						resolve(true);
-					}
-				});
-			}
-		}
-	}
-	
-	validationsRunner(req, res, next, validations);
 };
 
 exports.index = function(req, res) {
 	GLOBAL.log('measurements.add');
+	
 	var requestData = req.data.requestData;
 	var measurement = new Measurement();
 	
-	measurement.add(req, {
-		userId: requestData.userId,
+	measurement.create(req, {
+		userId: req.data.activeUser._id,
 		data: requestData.data
 	}).then(function(result) {
 		req.data.response.data = result;

@@ -10,8 +10,10 @@ var nconf = require('nconf');
 var consoleLogs, currentRes;
 
 exports.init = function() {
-	GLOBAL.log = function(label, data) {
-		if (data) {
+	GLOBAL.log = function(label, data, info) {
+		if (info) {
+			console.log(label.green, data, info);
+		} else if (data) {
 			console.log(label.green, data);
 		} else {
 			console.log(label.green);

@@ -65,7 +65,7 @@ exports.index = function(req, res) {
 			}).then(function(result) {
 				if (result === 'notFound') {
 					// session notFOund, so lets create a new one
-					session.add(req, {
+					session.create(req, {
 						userId: user._id
 					}).then(function(result) {
 						sendResponse(result._id);

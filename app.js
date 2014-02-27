@@ -61,6 +61,7 @@ app.all('*', apiAccessVerifier);
 require('./v1/authentications/register.js').init(app);
 require('./v1/authentications/login.js').init(app);
 require('./v1/measurements/add.js').init(app);
+require('./v1/measurements/update.js').init(app);
 require('./v1/users/measurements.js').init(app);
 // require('./v1/authentications/register.js').init(app);
 // require('./v1/authentications/logout.js').init(app);

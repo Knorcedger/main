@@ -21,16 +21,16 @@ measurementSchema.methods.getFilters = function() {
 	};
 };
 
-measurementSchema.methods.add = function(req, saveParams) {
-	return schemaExtender.add(req, measurementSchema, 'Measurement', saveParams);
+measurementSchema.methods.create = function(req, save) {
+	return schemaExtender.create(req, measurementSchema, 'Measurement', save);
 }
 
-measurementSchema.methods.update = function(req, instance) {
-	return schemaExtender.update(req, measurementSchema, 'Measurement', instance);
+measurementSchema.methods.findOneAndUpdate = function(req, query, update) {
+	return schemaExtender.findOneAndUpdate(req, measurementSchema, 'Measurement', query, update);
 }
 
-measurementSchema.methods.findOne = function(req, queryParams) {
-	return schemaExtender.findOne(req, measurementSchema, 'Measurement', queryParams);
+measurementSchema.methods.findOne = function(req, query) {
+	return schemaExtender.findOne(req, measurementSchema, 'Measurement', query);
 }
 
 mongoose.model('Measurement', measurementSchema);

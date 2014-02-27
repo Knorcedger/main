@@ -21,12 +21,12 @@ sessionSchema.methods.getFilters = function() {
 	};
 };
 
-sessionSchema.methods.add = function(req, saveParams) {
-	return schemaExtender.add(req, sessionSchema, 'Session', saveParams);
+sessionSchema.methods.create = function(req, save) {
+	return schemaExtender.create(req, sessionSchema, 'Session', save);
 }
 
-sessionSchema.methods.findOne = function(req, queryParams) {
-	return schemaExtender.findOne(req, sessionSchema, 'Session', queryParams);
+sessionSchema.methods.findOne = function(req, query) {
+	return schemaExtender.findOne(req, sessionSchema, 'Session', query);
 }
 
 sessionSchema.methods.findById = function(req, id) {
