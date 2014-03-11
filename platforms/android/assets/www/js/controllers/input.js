@@ -1,42 +1,48 @@
-Witer.controller('input', function($scope, $rootScope, $location, $timeout, eventPublisher, measurements, dateFilter, $translate) {
+Witer.controller('input', function($scope, $rootScope, $location, $timeout, eventPublisher, measurementData, measurements, dateFilter, $translate, toast) {
+	
 	$scope.$on('cancel.click.success', function() {
 		$location.path('/');
 	});
 	
 	$scope.$on('done.click.success', function() {
+		// find the timestamp with day accuracy
 		var temp = $scope.date.split('-');
 		var date = new Date(temp[0], parseInt(temp[1], 10) - 1, temp[2]);
+		
+		// create the new measurement
 		var measurement = {
 			date: date.getTime(),
 			weight: parseFloat($scope.weight)
 		};
 
 		// if we add a second measurement in the same day, overwrite the previous one
-		if (measurementData.length) {
+		if (measurementData && measurementData.length) {
 			if (measurement.date !== measurementData[0].date) {
 				measurementData.unshift(measurement);
 			} else {
 				measurementData[0].weight = measurement.weight;
 			}
+		} else {
+			measurementData = [measurement];
 		}
 		// find trend
-		//findTrend();
+		findTrend();
 		// order them by date
 // 		measurementData = _.sortBy(measurementData, 'date').reverse();
 		// save
-		measurements.save(measurement);
-// 		measurements.save(measurementData);
-		eventPublisher.publish('toast.display', {message: $translate('input.ADDED')});
+		measurements.save(measurementData);
 		// and redirect
 		$location.url('/');
+		toast.display($translate('input.ADDED'));
 	});
 	
 	eventPublisher.publish('actionbar.showButtons');
 	
 	// set the default weight to the last saved value, or set to a default value of first open
-	var measurementData = measurements.load();
+	// also find the selection limits
 	var limits = {};
-	if (measurementData.length) {
+		
+	if (measurementData && measurementData.length) {
 		$scope.weight = measurementData[0].weight;
 		limits.low = $scope.weight - 20;
 		limits.high = $scope.weight + 20;
@@ -45,7 +51,7 @@ Witer.controller('input', function($scope, $rootScope, $location, $timeout, even
 		limits.low = 0;
 		limits.high = 200;
 	}
-	
+
 	//create the values to display in the dropdown
 	var availableWeights = [];
 	for (var i = limits.low; i < limits.high; i += 0.1) {
@@ -56,6 +62,8 @@ Witer.controller('input', function($scope, $rootScope, $location, $timeout, even
 		});
 		i = parseFloat(i);
 	}
+
+	// update the scope with a small timeout to not make the animation go slow
 	$timeout(function() {
 		$scope.availableWeights = availableWeights;
 	}, 300);

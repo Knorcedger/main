@@ -1,4 +1,7 @@
 {
+	"general": {
+		"FAIL": "Server not responding. Please try again later"
+	},
 	"actionbar": {
 		"DONE": "Done",
 		"CANCEL": "Cancel"
@@ -43,21 +46,32 @@
 	"sync": {
 		"REGISTER": "Register",
 		"LOGIN": "Login",
-		"EMAIL": "Email",
+		"USERNAME": "Username",
 		"PASSWORD": "Password",
 		"CANCEL": "Cancel",
 		"REGISTER_EXPLANATION": "You can register with the form below to backup your data and sync it with other devices",
-		"REGISTER_SUCCESS": "You have successfully registered",
+		"REGISTER_SUCCESS": "You have successfully registered. You can now login!",
 		"REGISTER_ERROR": "Something went wrong, please try again",
 		"LOGIN_SUCCESS": "You have successfully logged in",
 		"LOGIN_ERROR": "Something went wrong, please try again",
 		"error_codes": {
 			"login": {
-				"INVALID_USER": "The specified user does not exist",
-				"INVALID_PASSWORD": "The specified password is incorrect"
+				"username": {
+					"INVALID_LENGTH": "The username must be at least 1 character long"
+				},
+				"password": {
+					"INVALID_LENGTH": "The password must be at least 1 character long"
+				},
+				"WRONG_DATA": "Invalid username or password"
 			},
 			"register": {
-				"INVALID_PASSWORD": "Invalid password specified"
+				"username": {
+					"INVALID_LENGTH": "The username must be at least 1 character long",
+					"ALREADY_EXISTS": "The username name already exists. Please use another one"
+				},
+				"password": {
+					"INVALID_LENGTH": "The password must be at least 1 character long"
+				}
 			}
 		}
 	}

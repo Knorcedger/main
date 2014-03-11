@@ -1,6 +1,4 @@
 <div>
-
-	<div ng-repeat="task in tasks">{{task}}</div>
 	
 	<div class="tile" ng-if="measurementData.length > 1">
 		<chart measurementData="measurementData"></chart>
@@ -39,7 +37,7 @@
 			</div>
 		</div>
 		
-		<div class="row big">
+		<div class="row big" ng-show="height">
 			<div class="label">BMI</div>
 			<div class="field">
 				<span class="value">

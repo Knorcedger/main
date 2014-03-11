@@ -1,5 +1,5 @@
-Witer.controller("history", function($scope, measurements, eventPublisher) {
-	$scope.measurementData = measurements.load();
+Witer.controller("history", function($scope, measurementData, eventPublisher) {
+	$scope.measurementData = measurementData;
 
 	$scope.openModal = function(index) {
 		$scope.entryIndex = index;

@@ -1,4 +1,4 @@
-Witer.controller('settings', function($scope, $rootScope, $timeout, $translate, store, availablePreferences, preferences, activeUser, user, eventPublisher){
+Witer.controller('settings', function($scope, $rootScope, $timeout, $translate, store, availablePreferences, preferences, activeUser, Authentication, eventPublisher){
 
 	$scope.$on('user.logout.success', function() {
 		$scope.activeUser = activeUser.get();
@@ -25,7 +25,7 @@ Witer.controller('settings', function($scope, $rootScope, $timeout, $translate, 
 	});
 	
 	$scope.logout = function() {
-		user.logout();
+		Authentication.logout();
 	}
 	
 	$scope.activeUser = activeUser.get();

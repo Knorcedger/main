@@ -1,32 +1,42 @@
-Witer.controller('sync', function($scope, $location, $translate, user, eventPublisher) {
-	$scope.$on('user.register.success', function(event, data) {
-		eventPublisher.publish('toast.display', {message: $translate('sync.REGISTER_SUCCESS')});
-		$location.path('/settings');
-	});
-	
-	$scope.$on('user.register.error', function(event, data) {
-		eventPublisher.publish('toast.display', {message: data.message.replace(/FirebaseSimpleLogin: /g, '')});
-	});
-	
-	$scope.$on('user.login.success', function(event, data) {
-		eventPublisher.publish('toast.display', {message: $translate('sync.LOGIN_SUCCESS')});
-		$location.path('/settings');
-	});
-	
-	$scope.$on('user.login.error', function(event, data) {
-		eventPublisher.publish('toast.display', {message: data.message.replace(/FirebaseSimpleLogin: /g, '')});
-	});
+Witer.controller('sync', function($scope, $location, $translate, Restangular, Authentication, toast, activeUser, measurements) {
 	
 	$scope.cancel = function() {
 		$location.path('/settings');
 	}
 	
 	$scope.register = function() {
-		user.register($scope.registerEmail, $scope.registerPassword);
+		Authentication.register($scope.registerUsername, $scope.registerPassword)
+		.then(function(result) {
+			$scope.mode = 'login';
+			toast.display($translate('sync.REGISTER_SUCCESS'), 5000);
+		}, function(result) {
+			var message;
+			if (result === 'FAIL') {
+				message = $translate('general.FAIL')
+			} else {
+				message = $translate('sync.error_codes.register.' + result);
+			}
+			toast.display(message, 5000);
+		});
 	}
 	
 	$scope.login = function() {
-		user.login($scope.loginEmail, $scope.loginPassword);
+		Authentication.login($scope.loginUsername, $scope.loginPassword)
+		.then(function(result) {
+			activeUser.set(result);
+			// sync the measurements
+			measurements.sync();
+			toast.display($translate('sync.LOGIN_SUCCESS'), 5000);
+			$location.path('/settings');
+		}, function(result) {
+			var message;
+			if (result === 'FAIL') {
+				message = $translate('general.FAIL')
+			} else {
+				message = $translate('sync.error_codes.login.' + result);
+			}
+			toast.display(message, 5000);
+		});
 	}
 	
 	$scope.mode = 'register';
