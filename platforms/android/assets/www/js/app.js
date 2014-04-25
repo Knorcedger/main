@@ -65,6 +65,8 @@ Witer.config(function($routeProvider, $locationProvider, $httpProvider, $logProv
 				measurements.sync()
 				.then(function(result) {
 					deferred.resolve(result);
+				}, function(result) {
+					deferred.resolve();
 				});
 				
 				return deferred.promise;
@@ -81,6 +83,8 @@ Witer.config(function($routeProvider, $locationProvider, $httpProvider, $logProv
 				measurements.get()
 				.then(function(result) {
 					deferred.resolve(result);
+				}, function(result) {
+					deferred.resolve();
 				});
 				
 				return deferred.promise;
@@ -97,6 +101,8 @@ Witer.config(function($routeProvider, $locationProvider, $httpProvider, $logProv
 				measurements.get()
 				.then(function(result) {
 					deferred.resolve(result);
+				}, function(result) {
+					deferred.resolve();
 				});
 				
 				return deferred.promise;

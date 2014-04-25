@@ -1,52 +1,4 @@
-Witer.service('measurements', function($q, $timeout, browserStorage, store, Restangular, User, activeUser, Measurement) {
-
-// 	var activeUser = activeUser.get();
-
-// 	var measurementsRef = new Firebase(firebaseUrl + '/measurements/' + activeUser.id);
-// 	// Automatically syncs everywhere in realtime
-// 	var themeasurements = $firebase(measurementsRef);
-
-// 	var measurements = new ed.Class().extend({
-// 		type: 'measurements',
-// 		config: {},
-// 		load: function() {
-// 			return $firebase(measurementsRef)
-// // 				return store.get('measurements') || [];
-// // 				return this.browserStorage({
-// // 					action: 'load',
-// // 					location: 'local',
-// // 					method: 'load',
-// // 					key: 'measurements'
-// // 				});
-// 		},
-// 		save: function(value) {
-// 			themeasurements.$add(value);
-// 			return store.set('measurements', value, true);
-// // 				return this.browserStorage({
-// // 					action: 'save',
-// // 					location: 'local',
-// // 					method: 'save',
-// // 					key: 'measurements',
-// // 					value: value
-// // 				});
-// 		}
-// 	});
-
-// 	return measurements;
-	
-// 	var measurements = Restangular.withConfig(function(RestangularConfigurer) {
-		
-// 		RestangularConfigurer.addElementTransformer('measurements', true, function(object) {
-// 			object.addRestangularMethod('save', 'post', 'save');
-
-// 			return object;
-// 		});
-// 		RestangularConfigurer.addElementTransformer('measurements', true, function(object) {
-// 			object.addRestangularMethod('load', 'post', 'load');
-
-// 			return object;
-// 		});
-// 	});
+Witer.service('measurements', function($q, store, User, activeUser, Measurement) {
 
 	var measurements;
 
@@ -89,9 +41,9 @@ Witer.service('measurements', function($q, $timeout, browserStorage, store, Rest
 				.then(function(result) {
 					if (result === 'notFound') {
 						Measurement.add(data);
-					} else {
+					}/* else {
 						deferred.resolve();
-					}
+					}*/
 				});
 			}
 
@@ -104,7 +56,7 @@ Witer.service('measurements', function($q, $timeout, browserStorage, store, Rest
 		get: function() {
 			var deferred = $q.defer();
 			
-			measurements = measurements || store.get('measurements') && store.get('measurements').data;
+			measurements = measurements && measurements.data || store.get('measurements') && store.get('measurements').data;
 			deferred.resolve(measurements);
 			
 			return deferred.promise;
@@ -134,7 +86,7 @@ Witer.service('measurements', function($q, $timeout, browserStorage, store, Rest
 						deferred.resolve(result.data);
 					}
 				}, function(result) {
-					debugger;
+					deferred.reject();
 				});
 			}/* else if (measurements) {
 				deferred.resolve(measurements);
